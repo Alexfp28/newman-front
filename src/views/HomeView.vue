@@ -4,6 +4,7 @@
 
 <template>
   <main>
-    <p> Home View </p>
+    <RouterLink to = "/onlyMovile/Screens/test1">navigate</RouterLink>
+    <p>Hola</p>
   </main>
 </template>
