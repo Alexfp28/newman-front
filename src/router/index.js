@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import test1 from "@/views/OnlyMovile/Screens/Inicio.vue";
+import signIn from "@/views/OnlyMovile/Screens/SignIn.vue";
+import logIn from "@/views/OnlyMovile/Screens/LogIn.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +12,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/onlyMovile/Screens/test1',
-      name: 'test',
-      component: test1,
+      path: '/onlyMovile/Screens/SignIn',
+      name: 'SignIn',
+      component: signIn,
+    },
+    {
+      path: '/onlyMovile/Screens/Login',
+      name: 'Login',
+      component: logIn,
     }
   ],
 })

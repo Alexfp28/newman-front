@@ -4,7 +4,7 @@
 
 <template>
   <main>
-    <RouterLink to = "/onlyMovile/Screens/test1">navigate</RouterLink>
+    <RouterLink to = "/onlyMovile/Screens/SignIn">navigate</RouterLink>
     <p>Hola</p>
   </main>
 </template>
