@@ -60,6 +60,10 @@ export default {
 </template>
 
 <style>
+/* Helper classes */
+.bg-basil {
+  background-color: #213555 !important;
+}
 
 .text-newmen {
   color: #ffffff !important;
