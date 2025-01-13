@@ -1,9 +1,9 @@
 <script setup>
-import Main_usuario from "@/views/OnlyDesktop/VistaUsuario/main_usuario.vue";
+import HeaderComponent from "@/OnlyDesktop/VistaUsuario/components/HeaderComponent.vue";
 </script>
 
 <template>
   <main>
-    <main_usuario/>
+    <HeaderComponent/>
   </main>
 </template>
