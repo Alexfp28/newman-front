@@ -3,10 +3,10 @@ import HomeComponent from "@/OnlyDesktop/VistaUsuario/components/pages/HomeCompo
 import ScheduleComponent from "@/OnlyDesktop/VistaUsuario/components/pages/ScheduleComponent.vue";
 import AppointmentComponent from "@/OnlyDesktop/VistaUsuario/components/pages/AppointmentComponent.vue";
 import CatalogComponent from "@/OnlyDesktop/VistaUsuario/components/pages/CatalogComponent.vue";
-import "@/assets/TabComponent.css"
+import ContactComponent from "@/OnlyDesktop/VistaUsuario/components/pages/ContactComponent.vue";
 
 export default {
-  components: {AppointmentComponent, ScheduleComponent, HomeComponent, CatalogComponent},
+  components: {ContactComponent, AppointmentComponent, ScheduleComponent, HomeComponent, CatalogComponent},
   data: () => ({
     tab: 'Inicio',
     items: [
@@ -24,12 +24,13 @@ export default {
     <v-tabs
         v-model="tab"
         bg-color="primary"
-        class="justify-center"
+        align-tabs="center"
     >
       <v-tab value="one">Inicio</v-tab>
       <v-tab value="two">Horario</v-tab>
       <v-tab value="three">Pedir Cita</v-tab>
       <v-tab value="fourth">Catálogo</v-tab>
+      <v-tab value="fifth">Contacto</v-tab>
     </v-tabs>
 
     <v-card-text class="justify-center">
@@ -48,6 +49,10 @@ export default {
 
         <v-tabs-window-item value="fourth">
           <CatalogComponent/>
+        </v-tabs-window-item>
+
+        <v-tabs-window-item value="fifth">
+          <ContactComponent/>
         </v-tabs-window-item>
       </v-tabs-window>
     </v-card-text>
