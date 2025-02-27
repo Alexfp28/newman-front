@@ -1,5 +1,5 @@
 <script setup>
-import HeaderComponent from "@/OnlyDesktop/VistaUsuario/components/HeaderComponent.vue";
+import HeaderComponent from "@/OnlyDesktop/VistaUsuario/components/dummies/HeaderComponent.vue";
 import TabComponent from "@/OnlyDesktop/VistaUsuario/components/TabComponent.vue";
 </script>
 
