@@ -24,7 +24,7 @@ import {
     VContainer,
     VForm, VIcon,
     VImg, VList, VListItem, VListItemTitle, VMenu,
-    VRow, VSheet, VSpacer, VTab, VTabs, VTabsWindow, VTabsWindowItem,
+    VRow, VSelect, VSheet, VSpacer, VTab, VTabs, VTabsWindow, VTabsWindowItem,
     VTextarea,
     VTextField, VToolbar, VToolbarTitle
 } from "vuetify/components";
@@ -58,7 +58,8 @@ const vuetify = createVuetify({
         VList,
         VMenu,
         VToolbar,
-        VCardActions
+        VCardActions,
+        VSelect
     },
     directives,
     icons: {

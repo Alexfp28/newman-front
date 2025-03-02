@@ -31,6 +31,25 @@
       <v-form @submit.prevent>
 
         <!-- Full Name -->
+        <v-select
+            v-model="select"
+            :items="items"
+            :rules="[v => !!v || 'No ha seleccionado ninguna hora']"
+            label="Horas disponibles"
+            prepend-icon="mdi-clock-outline"
+            required
+        ></v-select>
+
+        <v-select
+            v-model="select"
+            :items="items"
+            :rules="[v => !!v || 'Personal no seleccionado']"
+            label="Seleccione personal"
+            prepend-icon="mdi-account-switch"
+            required
+        ></v-select>
+
+        <!-- Full Name -->
         <v-text-field
             v-model="fullName"
             :rules="rules"
@@ -72,10 +91,10 @@
             density="comfortable"
             color="secondary"
             hide-details="true"
-            label="Al enviar este mensaje, acepto los términos y las condiciones de este sitio."
+            label="Al enviar este mensaje, acepto los términos y las condiciones de esta empresa."
         ></v-checkbox>
 
-        <v-btn class="mt-2" type="submit" block>Submit</v-btn>
+        <v-btn class="mt-2" type="submit" block>Reserve su cita</v-btn>
 
       </v-form>
     </v-col>
