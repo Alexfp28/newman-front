@@ -1,82 +1,171 @@
+<script>
+import "@/OnlyDesktop/VistaUsuario/styles/appointment-component.css"
+import {appointmentService} from "@/OnlyDesktop/VistaUsuario/services/AppointmentService.js"
+import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js"; // Importamos el servicio
+
+export default {
+  name: 'AppointmentComponent',
+  data() {
+    return {
+      fullName: '',
+      email: '',
+      phone: '',
+      message: '',
+      personal: '',
+      hour: '',
+      terms: false,
+      selectPersonal: ['Peluquero 1', 'Peluquero 2', 'Peluquero 3'],
+      selectHours: ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'],
+      rules: {
+        emptyValue: inputService.emptyValue,
+        email: inputService.email,
+        phoneNumber: inputService.phoneNumber,
+      },
+      month: new Date().getMonth(),
+      year: new Date().getFullYear(),
+      selectedDate: null,
+      monthNames: [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+      ],
+    };
+  },
+  computed: {
+    // Generar los días del calendario
+    days() {
+      return appointmentService.generateDays(this.month, this.year);
+    }
+  },
+  methods: {
+    // Cambiar al mes anterior
+    prevMonth() {
+      const { month, year } = appointmentService.prevMonth(this.month, this.year);
+      this.month = month;
+      this.year = year;
+    },
+
+    // Cambiar al siguiente mes
+    nextMonth() {
+      const { month, year } = appointmentService.nextMonth(this.month, this.year);
+      this.month = month;
+      this.year = year;
+    },
+
+    // Verificar si el día es hoy
+    isToday(day) {
+      return appointmentService.isToday(day, this.month, this.year);
+    },
+
+    // Verificar si el día está seleccionado
+    isSelected(day) {
+      return appointmentService.isSelected(day, this.selectedDate, this.monthNames, this.month, this.year);
+    },
+
+    // Seleccionar una fecha
+    selectDate(day) {
+      this.selectedDate = appointmentService.selectDate(day, this.month, this.year, this.monthNames);
+    },
+    // Función para filtrar la entrada del usuario
+    filterInput() {
+      // Reemplaza cualquier carácter que no sea un número
+      this.phone = this.phone.replace(/[^0-9]/g, '');
+    },
+  },
+};
+</script>
+
+
 <template>
   <v-row>
-    <v-col>
-      <div class="calendar-header">
-        <v-btn @click="prevMonth"><v-icon icon="mdi-arrow-left"/></v-btn>
+    <v-col class="main-container">
+      <section class="calendar-header">
+        <v-btn @click="prevMonth"><v-icon icon="mdi-arrow-left" /></v-btn>
         <h2>{{ monthNames[month] }} {{ year }}</h2>
-        <v-btn @click="nextMonth"><v-icon icon="mdi-arrow-right"/></v-btn>
-      </div>
+        <v-btn @click="nextMonth"><v-icon icon="mdi-arrow-right" /></v-btn>
+      </section>
 
-      <div class="calendar-grid">
-        <div class="calendar-day" v-for="(day, index) in days" :key="index">
-          <div
+      <article class="calendar-grid">
+        <section class="calendar-day" v-for="(day, index) in days" :key="index">
+          <section
               v-if="day !== null"
               class="calendar-cell"
-              v-for="n in 1"
-              :key="n"
               :class="{
-                'calendar-today': isToday(day),
-                'calendar-selected': isSelected(day),
-              }"
+              'calendar-today': isToday(day),
+              'calendar-selected': isSelected(day),
+            }"
               @click="selectDate(day)"
           >
             {{ day.date }}
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </article>
     </v-col>
-    <v-col v-if="selectedDate" class="form">
 
-      <!-- Form -->
+    <v-col v-if="selectedDate" class="form mt-5">
+      <!-- Formulario -->
       <v-form @submit.prevent>
-
-        <!-- Full Name -->
-        <v-select
-            v-model="select"
-            :items="items"
-            :rules="[v => !!v || 'No ha seleccionado ninguna hora']"
+        <v-autocomplete
+            v-model="hour"
+            :items="selectHours"
+            :rules="[rules.emptyValue]"
             label="Horas disponibles"
             prepend-icon="mdi-clock-outline"
+            variant="outlined"
             required
-        ></v-select>
+            clearable
+        ></v-autocomplete>
 
-        <v-select
-            v-model="select"
-            :items="items"
-            :rules="[v => !!v || 'Personal no seleccionado']"
+        <v-spacer class="mt-1 mb-1" />
+
+        <v-autocomplete
+            v-model="personal"
+            :items="selectPersonal"
+            :rules="[rules.emptyValue]"
             label="Seleccione personal"
             prepend-icon="mdi-account-switch"
+            variant="outlined"
+            clearable
             required
-        ></v-select>
+        ></v-autocomplete>
 
-        <!-- Full Name -->
+        <v-spacer class="mt-1 mb-1" />
+
         <v-text-field
             v-model="fullName"
-            :rules="rules"
+            variant="outlined"
+            :rules="[rules.emptyValue]"
             label="Nombre Completo"
             prepend-icon="mdi-account"
         ></v-text-field>
 
-        <!-- Email -->
+        <v-spacer class="mt-1 mb-1" />
+
         <v-text-field
             v-model="email"
-            :rules="rules"
+            :rules="[rules.email]"
             label="Email"
             type="email"
+            variant="outlined"
             prepend-icon="mdi-email"
         ></v-text-field>
 
-        <!-- Phone -->
+        <v-spacer class="mt-1 mb-1" />
+
         <v-text-field
+            @input="this.filterInput()"
             v-model="phone"
-            :rules="rules"
+            :rules="[rules.phoneNumber]"
+            variant="outlined"
             label="Teléfono"
+            type="tel"
             prepend-icon="mdi-cellphone"
         ></v-text-field>
 
-        <!-- Message -->
+        <v-spacer class="mt-1 mb-1" />
+
         <v-textarea
             class="form-message-field"
+            variant="outlined"
             v-model="message"
             label="Mensaje"
             prepend-icon="mdi-text-box"
@@ -85,7 +174,8 @@
             rows="5"
         ></v-textarea>
 
-        <!-- Terms Conditions -->
+        <v-spacer class="mt-1 mb-1" />
+
         <v-checkbox
             v-model="terms"
             density="comfortable"
@@ -95,158 +185,11 @@
         ></v-checkbox>
 
         <v-btn class="mt-2" type="submit" block>Reserve su cita</v-btn>
-
       </v-form>
     </v-col>
   </v-row>
-
 </template>
 
-<script>
-import { ref, computed } from 'vue';
-
-export default {
-  name: 'AppointmentComponent',
-  setup() {
-    const monthNames = [
-      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-    ];
-
-    const now = new Date();
-    const month = ref(now.getMonth());
-    const year = ref(now.getFullYear());
-    const selectedDate = ref(null);
-
-    // Obtener el primer día del mes
-    const getFirstDayOfMonth = (month, year) => {
-      return new Date(year, month, 1).getDay();
-    };
-
-    // Obtener el número de días en el mes
-    const getDaysInMonth = (month, year) => {
-      return new Date(year, month + 1, 0).getDate();
-    };
-
-    // Generar el calendario (7 columnas para los días de la semana)
-    const days = computed(() => {
-      const daysInMonth = getDaysInMonth(month.value, year.value);
-      const firstDay = getFirstDayOfMonth(month.value, year.value);
-      const days = [];
-
-      // Llenar los días previos al primer día del mes
-      for (let i = 0; i < firstDay; i++) {
-        days.push(null);
-      }
-
-      // Llenar los días del mes
-      for (let i = 1; i <= daysInMonth; i++) {
-        days.push({ date: i });
-      }
-
-      // Asegurarse de que el calendario tenga 6 filas (de 7 días)
-      while (days.length < 42) {
-        days.push(null);
-      }
-
-      return days;
-    });
-
-    // Cambiar al mes anterior
-    const prevMonth = () => {
-      if (month.value === 0) {
-        month.value = 11;
-        year.value--;
-      } else {
-        month.value--;
-      }
-    };
-
-    // Cambiar al siguiente mes
-    const nextMonth = () => {
-      if (month.value === 11) {
-        month.value = 0;
-        year.value++;
-      } else {
-        month.value++;
-      }
-    };
-
-    const isToday = (day) => {
-      if (!day) return false; // Asegúrate de que `day` no sea `null`
-      const today = new Date();
-      return day.date === today.getDate() &&
-          month.value === today.getMonth() &&
-          year.value === today.getFullYear();
-    };
-
-    const isSelected = (day) => {
-      if (!day) return false; // Asegúrate de que `day` no sea `null`
-      return selectedDate.value && `${day.date} ${monthNames[month.value]} ${year.value}` === selectedDate.value;
-    };
-
-    const selectDate = (day) => {
-      if (day) {
-        selectedDate.value = `${day.date} ${monthNames[month.value]} ${year.value}`;
-      }
-    };
-
-
-    return {
-      monthNames,
-      month,
-      year,
-      days,
-      prevMonth,
-      nextMonth,
-      selectDate,
-      selectedDate,
-      isToday,
-      isSelected,
-    };
-  },
-};
-</script>
 
 <style scoped>
-
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-}
-
-.calendar-day {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
-
-.calendar-cell {
-  width: 5rem;
-  height: 5rem;
-  text-align: center;
-  cursor: pointer;
-}
-
-.calendar-cell:hover {
-  background-color: lightgray;
-}
-
-.calendar-today {
-  background-color: #1867c0;
-  color: white;
-}
-
-.calendar-selected {
-  background-color: #6ea771;
-  border-radius: 80%;
-  color: white;
-}
 </style>

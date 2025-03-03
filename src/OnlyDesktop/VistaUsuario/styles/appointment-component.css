@@ -1,0 +1,43 @@
+.main-container {
+    height: 94vh;
+    width: 100%;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-day {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-cell {
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.calendar-cell:hover {
+    background-color: lightgray;
+}
+
+.calendar-today {
+    background-color: #1867c0;
+    color: white;
+}
+
+.calendar-selected {
+    background-color: lightgray;
+    color: black;
+}

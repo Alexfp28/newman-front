@@ -1,4 +1,6 @@
 <script>
+import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js";
+
 export default {
   name: "ContactComponent",
   data: () => ({
@@ -7,12 +9,11 @@ export default {
     phone: '',
     message: '',
     terms: false,
-    rules: [
-      value => {
-        if (value) return true
-        return 'No puedes dejar este campo vacío.'
-      },
-    ],
+    rules: {
+      emptyValue: inputService.emptyValue,
+      email: inputService.email,
+      phoneNumber: inputService.phoneNumber,
+    },
   }),
 }
 </script>
@@ -58,7 +59,7 @@ export default {
           <!-- Full Name -->
           <v-text-field
               v-model="fullName"
-              :rules="rules"
+              :rules="[rules.emptyValue]"
               label="Nombre Completo"
               prepend-icon="mdi-account"
           ></v-text-field>
@@ -66,7 +67,7 @@ export default {
           <!-- Email -->
           <v-text-field
               v-model="email"
-              :rules="rules"
+              :rules="[rules.email]"
               label="Email"
               type="email"
               prepend-icon="mdi-email"
@@ -75,7 +76,7 @@ export default {
           <!-- Phone -->
           <v-text-field
               v-model="phone"
-              :rules="rules"
+              :rules="[rules.phoneNumber]"
               label="Teléfono"
               prepend-icon="mdi-cellphone"
           ></v-text-field>
@@ -93,14 +94,15 @@ export default {
 
           <!-- Terms Conditions -->
           <v-checkbox
+              class="mt-3"
               v-model="terms"
               density="comfortable"
               color="secondary"
               hide-details="true"
-              label="Al enviar este mensaje, acepto los términos y las condiciones de este sitio."
+              label="Al enviar este mensaje, acepto los términos y las condiciones de esta empresa."
           ></v-checkbox>
 
-          <v-btn class="mt-2" type="submit" block>Submit</v-btn>
+          <v-btn class="mt-2" type="submit" block>Contáctanos</v-btn>
 
         </v-form>
       </v-col>
