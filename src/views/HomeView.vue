@@ -1,11 +1,7 @@
 <script setup>
-import HeaderComponent from "@/OnlyDesktop/VistaUsuario/components/dummies/HeaderComponent.vue";
-import TabComponent from "@/OnlyDesktop/VistaUsuario/components/TabComponent.vue";
+import HomeComponent from "@/OnlyDesktop/VistaUsuario/components/pages/HomeComponent.vue";
 </script>
 
 <template>
-  <main>
-    <TabComponent/>
-<!--    <HeaderComponent/>-->
-  </main>
+  <HomeComponent/>
 </template>

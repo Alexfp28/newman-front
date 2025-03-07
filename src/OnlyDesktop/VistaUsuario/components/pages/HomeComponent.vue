@@ -1,18 +1,21 @@
 <template>
-  <v-container class="home-container fill-height" fluid>
-    <!-- Dividir pantalla en dos columnas -->
+  <v-container class="home-container" fluid>
+
     <v-row>
-      <!-- Columna izquierda -->
-      <v-col cols="12" md="6" class="left-section">
+
+      <!-- Columna izquierda: Bienvenida y Servicios -->
+      <v-col cols="12" md="6">
         <!-- Sección de Bienvenida -->
-        <v-row justify="center" align="center" class="welcome-section">
+        <v-row justify="center" align="center">
           <v-col cols="12" class="text-center">
-            <h1 class="welcome-title">Bienvenido a NewMen</h1>
+            <h1 class="welcome-title">
+              Bienvenid@ a NewMen
+            </h1>
             <p class="welcome-text">
               Tu mejor opción para cortes de cabello, estilo y cuidado personal.
-              ¡Descubrí la experiencia premium que merecés!
+              ¡Descubre la experiencia premium que mereces!
             </p>
-            <v-btn class="cta-button" color="azul-clarito" large>
+            <v-btn class="cta-button" large to="/appointment">
               Pedir una cita
             </v-btn>
           </v-col>
@@ -41,13 +44,13 @@
         </v-row>
       </v-col>
 
-      <!-- Columna derecha -->
-      <v-col cols="12" md="6" class="right-section">
-        <h2 class="section-title text-center">
+      <!-- Columna derecha: Carrusel de imágenes -->
+      <v-col cols="12" md="6">
+        <h2 class="text-center carousel-title">
           Nuestros cortes de pelo <v-icon>mdi-scissors-cutting</v-icon>
         </h2>
         <v-carousel
-            class="haircut-carousel"
+            :show-arrows="false"
             hide-delimiters
             height="600"
             cycle
@@ -62,6 +65,7 @@
       </v-col>
 
     </v-row>
+
   </v-container>
 </template>
 
@@ -92,91 +96,80 @@ export default {
         'src/images/haircuts/haircut_3.jpg',
       ],
     };
-  }
+  },
 };
 </script>
 
 <style scoped>
-/* Colores */
-:root {
-  --color-blanco: #ffffff;
-  --color-azul-oscuro: #213555;
-  --color-azul-clarito: #3AAEF5;
-}
 
-/* Estilos generales */
-.home-container {
-  background-color: var(--color-azul-oscuro);
-  color: var(--color-blanco);
-  padding: 24px;
-}
-
-.left-section {
-  padding-right: 16px;
-  border-right: 1px solid var(--color-azul-clarito);
-}
-
-.right-section {
-  padding-left: 16px;
-}
-
-.welcome-section {
-  margin-bottom: 48px;
-}
-
+/* Sección de Bienvenida */
 .welcome-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--color-azul-clarito);
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
 .welcome-text {
   font-size: 1.2rem;
-  margin: 16px 0;
-  color: var(--color-blanco);
+  color: #666;
+  margin-bottom: 2rem;
 }
 
 .cta-button {
-  background-color: var(--color-azul-clarito);
-  color: var(--color-blanco);
+  background-color: #333;
+  color: #fff;
+  font-weight: 600;
   text-transform: uppercase;
-  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.services-section {
-  padding: 24px 0;
+.cta-button:hover {
+  background-color: #555;
 }
 
+/* Sección de Servicios */
 .section-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 32px;
-  color: var(--color-azul-clarito);
+  font-size: 2.5rem;
+  margin: 7rem 0 0;
+  color: #333;
 }
 
+/* Cartas */
 .service-card {
-  background-color: var(--color-azul-oscuro);
-  border: 1px solid var(--color-azul-clarito);
-  color: var(--color-blanco);
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 16px;
+  margin: 0.5rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .service-icon {
-  font-size: 2.5rem;
-  color: var(--color-azul-clarito);
-  margin-bottom: 16px;
+  font-size: 3rem;
+  color: #5ea9b8;
+  margin-bottom: 0.5rem;
 }
 
 .service-title {
   font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-blanco);
-  margin-bottom: 8px;
+  margin: 0.5rem 0;
+  color: #333;
 }
 
 .service-description {
   font-size: 1rem;
-  color: var(--color-blanco);
+  color: #777;
+}
+
+/* Carrusel */
+.carousel-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
 }
 </style>

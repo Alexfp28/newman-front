@@ -5,7 +5,9 @@ export default {
 </script>
 
 <template>
-<p>Bienvenido al componente del horario / calendario</p>
+  <v-container class="schedule-container fill-height" fluid>
+    <p>Bienvenido al componente del horario / calendario</p>
+  </v-container>
 </template>
 
 <style scoped>

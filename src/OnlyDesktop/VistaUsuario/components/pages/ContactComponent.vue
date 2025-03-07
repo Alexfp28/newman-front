@@ -19,13 +19,13 @@ export default {
 </script>
 
 <template>
-  <v-container class="contact-container fill-height" fluid>
+  <v-container class="contact-container" fluid>
 
     <!-- Banner -->
     <div class="banner">
       <v-img
-          :width="1900"
-          :max-height="500"
+          :width="1800"
+          :max-height="400"
           cover
           src="src/images/newmen.png"
           class="image-container"
@@ -113,15 +113,7 @@ export default {
 
 <style scoped>
 .contact-container {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.image-container {
-  position: relative;
-  width: 100%;
 }
 
 .banner-content {
