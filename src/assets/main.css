@@ -17,6 +17,13 @@ a {
   margin: 1px;
 }
 
+state-in-hover {}
+
+state-in-hover:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
 /*@media (hover: hover) {*/
 /*  a:hover {*/
 /*    background-color: hsl(190, 39%, 55%);*/

@@ -1,7 +1,11 @@
-<script setup>
-const handleAvatarClick = () => {
-  alert("Avatar clickeado!");
-};
+<script>
+
+import {defineComponent} from "vue";
+import UserAvatarPreviewComponent from "@/OnlyDesktop/VistaUsuario/components/pages/UserAvatarPreviewComponent.vue";
+
+export default defineComponent({
+  components: {UserComponent: UserAvatarPreviewComponent}
+})
 </script>
 
 <template>
@@ -46,30 +50,10 @@ const handleAvatarClick = () => {
 
     <v-spacer></v-spacer>
 
-    <!-- Avatar -->
-    <v-avatar
-        color="info"
-        size="large"
-        image="/src/images/unknow_user.jpg"
-        @click="handleAvatarClick"
-        class="clickable-avatar"
-        style="margin-right: 10px"
-    >
-    </v-avatar>
-
+    <!--UserAvatarPreviewComponent (Avatar)-->
+    <UserComponent/>
 
   </v-app-bar>
 </template>
 
-<style>
-
-.clickable-avatar {
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.clickable-avatar:hover {
-  transform: scale(1.1);
-}
-
-</style>
+<style></style>

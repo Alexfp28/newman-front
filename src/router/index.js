@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import ScheduleView from "@/views/ScheduleView.vue";
 import AppointmentView from "@/views/AppointmentView.vue";
 import CatalogView from "@/views/CatalogView.vue";
 import ContactView from "@/views/ContactView.vue";
+import UserProfileSettingsView from "@/views/UserProfileSettingsView.vue";
+import UserHistoryView from "@/views/UserHistoryView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +34,16 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: ContactView,
+    },
+    {
+      path: '/profileSettings',
+      name: 'profileSettings',
+      component: UserProfileSettingsView,
+    },
+    {
+      path: '/userHistory',
+      name: 'userHistory',
+      component: UserHistoryView,
     },
     {
       path: '/:pathMatch(.*)*',
