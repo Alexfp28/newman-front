@@ -1,22 +1,23 @@
 <template>
   <v-container class="home-container" fluid>
 
-    <v-row>
+    <v-row justify="space-around">
 
       <!-- Columna izquierda: Bienvenida y Servicios -->
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="5">
         <!-- Sección de Bienvenida -->
         <v-row justify="center" align="center">
           <v-col cols="12" class="text-center">
-            <h1 class="welcome-title">
+            <h1 class="title">
               Bienvenid@ a NewMen
             </h1>
             <p class="welcome-text">
-              Tu mejor opción para cortes de cabello, estilo y cuidado personal.
-              ¡Descubre la experiencia premium que mereces!
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam, asperiores dolore, dolorem enim
+              eveniet ex expedita fuga ipsa maiores maxime natus nemo numquam quo recusandae repellendus sapiente sint
+              veritatis!
             </p>
             <v-btn class="cta-button" large to="/appointment">
-              Pedir una cita
+              Pedir cita
             </v-btn>
           </v-col>
         </v-row>
@@ -45,9 +46,10 @@
       </v-col>
 
       <!-- Columna derecha: Carrusel de imágenes -->
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="5" class="carousel">
         <h2 class="text-center carousel-title">
-          Nuestros cortes de pelo <v-icon>mdi-scissors-cutting</v-icon>
+          Nuestros cortes de pelo
+          <v-icon>mdi-scissors-cutting</v-icon>
         </h2>
         <v-carousel
             :show-arrows="false"
@@ -59,11 +61,76 @@
               v-for="(image, index) in haircutImages"
               :key="index"
               :src="image"
-              class="carousel-image"
+              cover
+              rounded="xl"
           ></v-carousel-item>
         </v-carousel>
       </v-col>
 
+    </v-row>
+
+    <!-- Sección Sobre Nosotras -->
+    <v-row justify="center" align="center" class="about-us-section">
+      <v-col class="image-container">
+        <v-img src="src/images/employees/employee1.jpg" class="about-image left-image" cover></v-img>
+      </v-col>
+      <v-col cols="12" md="6" class="text-center">
+        <h2 class="about-title">Sobre Nosotras</h2>
+        <p class="about-text">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi autem consectetur delectus dolor eligendi,
+          impedit maiores, minima nulla odio qui veritatis vitae voluptate voluptatum. Mollitia nesciunt perspiciatis
+          quia sapiente tenetur!
+        </p>
+      </v-col>
+      <v-col class="image-container">
+        <v-img src="src/images/employees/employee2.jpg" class="about-image right-image" cover></v-img>
+      </v-col>
+    </v-row>
+
+    <!-- Sección Nuestros Clientes -->
+    <v-row justify="center" align="center" class="opinions">
+      <h2 class="opinions-title">Nuestros Clientes</h2>
+      <p class="opinions-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi autem consectetur delectus dolor eligendi,
+        impedit maiores, minima nulla odio qui veritatis vitae voluptate voluptatum. Mollitia nesciunt perspiciatis quia
+        sapiente tenetur!
+      </p>
+      <v-row class="opinions-row">
+        <v-col
+            v-for="(opinion, index) in opinions"
+            :key="index"
+            cols="12"
+            sm="6"
+            md="4"
+        >
+          <v-card
+              class="pa-4 rounded-lg elevation-3"
+              color="white"
+          >
+            <v-card-title class="text-h6 font-weight-bold">
+              {{ opinion.title }}
+            </v-card-title>
+
+            <v-card-subtitle class="text-grey-darken-1">
+              {{ opinion.personName }}
+            </v-card-subtitle>
+
+            <v-card-text class="mt-2">
+              {{ opinion.text }}
+            </v-card-text>
+
+            <v-card-actions class="align-center">
+              <v-rating
+                  :model-value="opinion.rating"
+                  color="amber"
+                  half-increments
+                  readonly
+                  density="compact"
+              ></v-rating>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-row>
 
   </v-container>
@@ -95,6 +162,26 @@ export default {
         'src/images/haircuts/haircut_2.png',
         'src/images/haircuts/haircut_3.jpg',
       ],
+      opinions: [
+        {
+          title: 'Excelente servicio',
+          personName: "Mariana López",
+          text: "El mejor corte que me han hecho en años. El personal es muy atento y profesional.",
+          rating: 4
+        },
+        {
+          title: 'Muy recomendado',
+          personName: "Carlos Méndez",
+          text: "Ambiente agradable y estilistas expertos. Me dejaron justo el look que quería.",
+          rating: 4.5
+        },
+        {
+          title: 'Volveré sin duda',
+          personName: "Sofía Ramírez",
+          text: "Me encantó el trato y la calidad del servicio. Además, los precios son razonables.",
+          rating: 5
+        }
+      ]
     };
   },
 };
@@ -103,8 +190,8 @@ export default {
 <style scoped>
 
 /* Sección de Bienvenida */
-.welcome-title {
-  font-size: 3rem;
+.title {
+  font-size: 5rem;
   font-weight: 700;
   color: #333;
   margin-bottom: 1rem;
@@ -131,7 +218,7 @@ export default {
 /* Sección de Servicios */
 .section-title {
   font-size: 2.5rem;
-  margin: 7rem 0 0;
+  margin: 4rem 0 0;
   color: #333;
 }
 
@@ -167,9 +254,77 @@ export default {
 }
 
 /* Carrusel */
+.carousel, .opinions{
+  background-color: #ececec;
+  padding: 5%;
+  border-radius: 5%;
+}
+
 .carousel-title {
   font-size: 2.5rem;
   color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Sección Sobre Nosotras */
+.about-us-section {
+  margin-top: 80px !important;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  font-size: 1.2rem;
+  color: #666;
   margin-bottom: 1.5rem;
 }
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.about-image {
+  width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-image {
+  transform: rotate(-5deg);
+  max-width: 250px;
+  height: 400px;
+}
+
+.right-image {
+  transform: rotate(5deg);
+  max-width: 250px;
+  height: 400px;
+}
+
+/* Sección Opiniones */
+.opinions {
+  margin-top: 80px !important;
+}
+
+.opinions-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.opinions-text {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
 </style>

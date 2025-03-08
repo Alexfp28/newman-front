@@ -17,11 +17,11 @@ const handleAvatarClick = () => {
     </RouterLink>
 
     <!--ScheduleView-->
-    <RouterLink to="/schedule">
-      <v-btn class="font-weight-bold" to="/schedule" color="white">
-        Horarios
-      </v-btn>
-    </RouterLink>
+<!--    <RouterLink to="/schedule">-->
+<!--      <v-btn class="font-weight-bold" to="/schedule" color="white">-->
+<!--        Horarios-->
+<!--      </v-btn>-->
+<!--    </RouterLink>-->
 
     <!--AppointmentView-->
     <RouterLink to="/appointment">

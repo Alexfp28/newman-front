@@ -8,8 +8,8 @@
   width: 130px;
 }
 
-.home-container, .contact-container{
-  padding: 2.5% 7% 4% 7% !important;
+.home-container, .contact-container, .appointment-container{
+  padding: 4% 6.5% 4% 6.5% !important;
   background-color: #f9f9f9;
 }
 

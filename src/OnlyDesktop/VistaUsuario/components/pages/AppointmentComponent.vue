@@ -1,7 +1,7 @@
 <script>
 import "@/OnlyDesktop/VistaUsuario/styles/appointment-component.css"
 import {appointmentService} from "@/OnlyDesktop/VistaUsuario/services/AppointmentService.js"
-import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js"; // Importamos el servicio
+import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js";
 
 export default {
   name: 'AppointmentComponent',
@@ -39,14 +39,14 @@ export default {
   methods: {
     // Cambiar al mes anterior
     prevMonth() {
-      const { month, year } = appointmentService.prevMonth(this.month, this.year);
+      const {month, year} = appointmentService.prevMonth(this.month, this.year);
       this.month = month;
       this.year = year;
     },
 
     // Cambiar al siguiente mes
     nextMonth() {
-      const { month, year } = appointmentService.nextMonth(this.month, this.year);
+      const {month, year} = appointmentService.nextMonth(this.month, this.year);
       this.month = month;
       this.year = year;
     },
@@ -76,120 +76,145 @@ export default {
 
 
 <template>
-  <v-row>
-    <v-col class="main-container">
-      <section class="calendar-header">
-        <v-btn @click="prevMonth"><v-icon icon="mdi-arrow-left" /></v-btn>
-        <h2>{{ monthNames[month] }} {{ year }}</h2>
-        <v-btn @click="nextMonth"><v-icon icon="mdi-arrow-right" /></v-btn>
-      </section>
+  <v-container class="appointment-container" fluid>
+    <v-row>
+      <v-col>
+        <section class="calendar-header">
+          <v-btn @click="prevMonth">
+            <v-icon icon="mdi-arrow-left"/>
+          </v-btn>
+          <h2>{{ monthNames[month] }} {{ year }}</h2>
+          <v-btn @click="nextMonth">
+            <v-icon icon="mdi-arrow-right"/>
+          </v-btn>
+        </section>
 
-      <article class="calendar-grid">
-        <section class="calendar-day" v-for="(day, index) in days" :key="index">
-          <section
-              v-if="day !== null"
-              class="calendar-cell"
-              :class="{
+        <article class="calendar-grid">
+          <section class="calendar-day" v-for="(day, index) in days" :key="index">
+            <section
+                v-if="day !== null"
+                class="calendar-cell"
+                :class="{
               'calendar-today': isToday(day),
               'calendar-selected': isSelected(day),
             }"
-              @click="selectDate(day)"
-          >
-            {{ day.date }}
+                @click="selectDate(day)"
+            >
+              {{ day.date }}
+            </section>
           </section>
-        </section>
-      </article>
-    </v-col>
+        </article>
+      </v-col>
+    </v-row>
+    <v-dialog
+        v-model="selectedDate"
+        max-width="600"
+        persistent
+    >
+      <v-card
+          prepend-icon="mdi-calendar-check"
+          :title="selectedDate"
+      >
+        <!-- Formulario -->
+        <v-form @submit.prevent style="padding: 10px 40px 40px 40px">
+          <v-autocomplete
+              v-model="hour"
+              :items="selectHours"
+              :rules="[rules.emptyValue]"
+              label="Horas disponibles"
+              prepend-icon="mdi-clock-outline"
+              variant="outlined"
+              required
+              clearable
+          ></v-autocomplete>
 
-    <v-col v-if="selectedDate" class="form mt-5">
-      <!-- Formulario -->
-      <v-form @submit.prevent>
-        <v-autocomplete
-            v-model="hour"
-            :items="selectHours"
-            :rules="[rules.emptyValue]"
-            label="Horas disponibles"
-            prepend-icon="mdi-clock-outline"
-            variant="outlined"
-            required
-            clearable
-        ></v-autocomplete>
+          <v-spacer class="mt-2 mb-1"/>
 
-        <v-spacer class="mt-1 mb-1" />
+          <v-autocomplete
+              v-model="personal"
+              :items="selectPersonal"
+              :rules="[rules.emptyValue]"
+              label="Seleccione personal"
+              prepend-icon="mdi-account-switch"
+              variant="outlined"
+              clearable
+              required
+          ></v-autocomplete>
 
-        <v-autocomplete
-            v-model="personal"
-            :items="selectPersonal"
-            :rules="[rules.emptyValue]"
-            label="Seleccione personal"
-            prepend-icon="mdi-account-switch"
-            variant="outlined"
-            clearable
-            required
-        ></v-autocomplete>
+          <v-spacer class="mt-2 mb-1"/>
 
-        <v-spacer class="mt-1 mb-1" />
+          <v-textarea
+              class="form-message-field"
+              variant="outlined"
+              v-model="message"
+              :rules="[rules.emptyValue]"
+              label="Mensaje"
+              prepend-icon="mdi-text-box"
+              maxlength="200"
+              counter
+              rows="5"
+          ></v-textarea>
 
-        <v-text-field
-            v-model="fullName"
-            variant="outlined"
-            :rules="[rules.emptyValue]"
-            label="Nombre Completo"
-            prepend-icon="mdi-account"
-        ></v-text-field>
+          <v-spacer class="mt-2 mb-1"/>
 
-        <v-spacer class="mt-1 mb-1" />
+          <v-checkbox
+              v-model="terms"
+              density="comfortable"
+              color="secondary"
+              hide-details="true"
+              label="Al enviar este mensaje, acepto los términos y las condiciones de esta empresa."
+          ></v-checkbox>
 
-        <v-text-field
-            v-model="email"
-            :rules="[rules.email]"
-            label="Email"
-            type="email"
-            variant="outlined"
-            prepend-icon="mdi-email"
-        ></v-text-field>
+          <!-- Submit / Close Buttons -->
+          <v-row class="mt-2">
+            <v-col>
+              <v-btn
+                  color="#ff8a8a"
+                  style="color: white"
+                  prepend-icon="mdi-close"
+                  class="mt-2 font-weight-bold"
+                  @click="selectedDate = false"
+                  block
+              >
+                Elegir Otro Día
+              </v-btn>
+            </v-col>
+            <v-col>
+              <v-btn
+                  color="#5ea9b8"
+                  prepend-icon="mdi-check"
+                  class="mt-2 font-weight-bold"
+                  type="submit"
+                  @click="selectedDate = false"
+                  block>
+                Reserve Su Cita
+              </v-btn>
+            </v-col>
+          </v-row>
 
-        <v-spacer class="mt-1 mb-1" />
-
-        <v-text-field
-            @input="this.filterInput()"
-            v-model="phone"
-            :rules="[rules.phoneNumber]"
-            variant="outlined"
-            label="Teléfono"
-            type="tel"
-            prepend-icon="mdi-cellphone"
-        ></v-text-field>
-
-        <v-spacer class="mt-1 mb-1" />
-
-        <v-textarea
-            class="form-message-field"
-            variant="outlined"
-            v-model="message"
-            label="Mensaje"
-            prepend-icon="mdi-text-box"
-            maxlength="200"
-            counter
-            rows="5"
-        ></v-textarea>
-
-        <v-spacer class="mt-1 mb-1" />
-
-        <v-checkbox
-            v-model="terms"
-            density="comfortable"
-            color="secondary"
-            hide-details="true"
-            label="Al enviar este mensaje, acepto los términos y las condiciones de esta empresa."
-        ></v-checkbox>
-
-        <v-btn class="mt-2" type="submit" block>Reserve su cita</v-btn>
-      </v-form>
-    </v-col>
-  </v-row>
+        </v-form>
+      </v-card>
+    </v-dialog>
+  </v-container>
 </template>
 
 
 <style scoped>
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+
 </style>
