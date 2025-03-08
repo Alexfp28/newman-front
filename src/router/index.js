@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import ScheduleView from "@/OnlyDesktop/VistaUsuario/components/dummies/ScheduleView.vue";
 import HomeView from '@/views/HomeView.vue'
 import ScheduleView from "@/views/ScheduleView.vue";
 import AppointmentView from "@/views/AppointmentView.vue";
@@ -15,11 +16,11 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      path: '/schedule',
-      name: 'schedule',
-      component: ScheduleView,
-    },
+    // {
+    //   path: '/schedule',
+    //   name: 'schedule',
+    //   component: ScheduleView,
+    // },
     {
       path: '/appointment',
       name: 'appointment',

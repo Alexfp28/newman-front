@@ -62,6 +62,7 @@ export default {
               :rules="[rules.emptyValue]"
               label="Nombre Completo"
               prepend-icon="mdi-account"
+              variant="outlined"
           ></v-text-field>
 
           <!-- Email -->
@@ -71,6 +72,7 @@ export default {
               label="Email"
               type="email"
               prepend-icon="mdi-email"
+              variant="outlined"
           ></v-text-field>
 
           <!-- Phone -->
@@ -79,10 +81,12 @@ export default {
               :rules="[rules.phoneNumber]"
               label="Teléfono"
               prepend-icon="mdi-cellphone"
+              variant="outlined"
           ></v-text-field>
 
           <!-- Message -->
           <v-textarea
+              :rules="[rules.emptyValue]"
               class="form-message-field"
               v-model="message"
               label="Mensaje"
@@ -90,6 +94,7 @@ export default {
               maxlength="200"
               counter
               rows="5"
+              variant="outlined"
           ></v-textarea>
 
           <!-- Terms Conditions -->
@@ -107,6 +112,51 @@ export default {
         </v-form>
       </v-col>
     </v-row>
+
+    <v-row justify="center" align="center" class="alsoin">
+      <!-- Título  -->
+      <v-col cols="12" class="text-center">
+        <h2 class="alsoin-title">También nos puedes encontrar en</h2>
+      </v-col>
+
+      <v-row class="alsoin-row">
+
+        <!-- Columna de Facebook -->
+        <v-col>
+          <v-card
+              class="pa-4 rounded-lg elevation-3 text-center"
+              color="white"
+          >
+            <v-card-title class="text-h6 font-weight-bold">
+              <v-icon color="blue" size="60">mdi-facebook</v-icon>
+            </v-card-title>
+            <v-card-subtitle>
+              <a href="https://www.facebook.com/newmenpeluqueria/" target="_blank">
+                Visítanos en Facebook
+              </a>
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
+
+        <!-- Columna con los horarios -->
+        <v-col>
+          <v-card
+              class="pa-4 rounded-lg elevation-3"
+              color="white"
+          >
+            <v-card-title class="text-h6 font-weight-bold">
+              Horario
+            </v-card-title>
+            <v-card-text>
+              Lunes - Viernes: X:XX AM - X:XX PM <br>
+              Sábado: X:XX AM - X:XX PM <br>
+              Domingo: Cerrado
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-row>
+
 
   </v-container>
 </template>
@@ -148,4 +198,26 @@ export default {
   height: 150px;
 }
 
+.alsoin-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.alsoin {
+  background-color: #ececec;
+  padding: 2%;
+  border-radius: 40px;
+}
+
+a {
+  text-decoration: none;
+  color: #1877f2;
+  font-weight: bold;
+}
+
+.v-text-field, .v-text-area {
+  padding: 2px !important;
+}
 </style>
