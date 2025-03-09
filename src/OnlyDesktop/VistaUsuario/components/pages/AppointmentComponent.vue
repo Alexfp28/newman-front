@@ -1,10 +1,10 @@
 <script>
-import "@/OnlyDesktop/VistaUsuario/styles/appointment-component.css"
-import {appointmentService} from "@/OnlyDesktop/VistaUsuario/services/AppointmentService.js"
+import "@/OnlyDesktop/VistaUsuario/styles/appointment-component.css";
+import {appointmentService} from "@/OnlyDesktop/VistaUsuario/services/AppointmentService.js";
 import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js";
 
 export default {
-  name: 'AppointmentComponent',
+  name: "AppointmentComponent",
   data() {
     return {
       appointmentCreated: false,
@@ -12,8 +12,8 @@ export default {
       personal: null,
       hour: null,
       terms: false,
-      selectPersonal: ['Peluquero 1', 'Peluquero 2', 'Peluquero 3'],
-      selectHours: ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'],
+      selectPersonal: ["Peluquero 1", "Peluquero 2", "Peluquero 3"],
+      selectHours: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00",],
       rules: {
         emptyValue: inputService.emptyValue,
         email: inputService.email,
@@ -22,17 +22,14 @@ export default {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
       selectedDate: null,
-      monthNames: [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-      ],
+      monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",],
     };
   },
   computed: {
     // Generar los días del calendario
     days() {
       return appointmentService.generateDays(this.month, this.year);
-    }
+    },
   },
   methods: {
     // Cambiar al mes anterior
@@ -63,12 +60,40 @@ export default {
     selectDate(day) {
       this.selectedDate = appointmentService.selectDate(day, this.month, this.year, this.monthNames);
     },
-    // Función para filtrar la entrada del usuario
-    filterInput() {
-      // Reemplaza cualquier carácter que no sea un número
-      this.phone = this.phone.replace(/[^0-9]/g, '');
+
+    // Validar el formulario
+    async validate() {
+      const {valid} = await this.$refs.form.validate();
+      if (valid) {
+        this.appointmentCreated = true;
+        this.sendAppointment();
+      }
     },
-  },
+
+    // Al darle al boton de elegir otro día
+    chooseOtherDay() {
+      this.reset()
+      this.selectedDate = false
+    },
+
+    // Enviar la cita
+    sendAppointment() {
+      console.log("Cita enviada!");
+
+      //--------------------------------------
+      // Aquí deberemos mandar la info al back
+      //--------------------------------------
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1200);
+    },
+
+    // Resetear el formulario
+    reset() {
+      this.$refs.form.reset();
+    }
+  }
 };
 </script>
 
@@ -134,8 +159,9 @@ export default {
           prepend-icon="mdi-calendar-check"
           :title="selectedDate"
       >
+
         <!-- Formulario -->
-        <v-form @submit.prevent style="padding: 10px 40px 40px 40px">
+        <v-form ref="form" style="padding: 10px 40px 40px 40px">
           <v-autocomplete
               v-model="hour"
               :items="selectHours"
@@ -144,7 +170,6 @@ export default {
               prepend-icon="mdi-clock-outline"
               variant="outlined"
               required
-              clearable
           ></v-autocomplete>
 
           <v-spacer class="mt-2 mb-1"/>
@@ -156,7 +181,6 @@ export default {
               label="Seleccione personal"
               prepend-icon="mdi-account-switch"
               variant="outlined"
-              clearable
               required
           ></v-autocomplete>
 
@@ -195,7 +219,7 @@ export default {
                   style="color: white"
                   prepend-icon="mdi-close"
                   class="mt-2 font-weight-bold"
-                  @click="selectedDate = false, personal = null , hour = null, message = null , terms = false"
+                  @click="chooseOtherDay"
                   block
               >
                 Elegir Otro Día
@@ -206,8 +230,7 @@ export default {
                   color="#5ea9b8"
                   prepend-icon="mdi-check"
                   class="mt-2 font-weight-bold"
-                  type="submit"
-                  @click="selectedDate = false, personal = null , hour = null, message = null , terms = false, appointmentCreated = true"
+                  @click="validate"
                   :disabled="!terms"
                   block
               >

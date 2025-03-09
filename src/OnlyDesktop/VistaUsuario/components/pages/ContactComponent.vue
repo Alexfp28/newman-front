@@ -17,12 +17,24 @@ export default {
     },
   }),
   methods: {
-    sendEmail() {
-      this.emailSent = true;
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 800);
+    // Al darle al boton de contáctanos
+    async sendEmail() {
+      const {valid} = await this.$refs.contactForm.validate();
+      if (valid) {
+        this.emailSent = true;
+
+        //--------------------------------------
+        // Aquí deberemos mandar la info al back
+        //--------------------------------------
+
+        this.reset()
+      }
+    },
+
+    // Resetear el formulario
+    reset() {
+      this.$refs.contactForm.reset();
     }
   }
 
@@ -77,7 +89,7 @@ export default {
       <v-col class="form">
 
         <!-- Form -->
-        <v-form ref="contactForm" @submit.prevent="sendEmail">
+        <v-form ref="contactForm">
           <v-text-field
               v-model="fullName"
               :rules="[rules.emptyValue]"
@@ -128,10 +140,10 @@ export default {
 
           <v-btn
               class="mt-2 font-weight-bold"
-              type="submit"
               block
               color="#5ea9b8"
               :disabled="!terms"
+              @click="sendEmail"
           >
             Contáctanos
           </v-btn>
