@@ -1,6 +1,7 @@
 <template>
   <v-container class="home-container" fluid>
 
+    <!-- Bienvenida y Carousel -->
     <v-row justify="space-around">
 
       <!-- Columna izquierda: Bienvenida y Servicios -->
@@ -95,7 +96,7 @@
         impedit maiores, minima nulla odio qui veritatis vitae voluptate voluptatum. Mollitia nesciunt perspiciatis quia
         sapiente tenetur!
       </p>
-      <v-row class="opinions-row">
+      <v-row>
         <v-col
             v-for="(opinion, index) in opinions"
             :key="index"

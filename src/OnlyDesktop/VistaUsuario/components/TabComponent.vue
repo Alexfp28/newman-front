@@ -1,6 +1,6 @@
 <script>
 import HomeComponent from "@/OnlyDesktop/VistaUsuario/components/pages/HomeComponent.vue";
-import ScheduleComponent from "@/OnlyDesktop/VistaUsuario/components/pages/ScheduleComponent.vue";
+import ScheduleComponent from "@/OnlyDesktop/VistaUsuario/components/dummies/ScheduleComponent.vue";
 import AppointmentComponent from "@/OnlyDesktop/VistaUsuario/components/pages/AppointmentComponent.vue";
 import CatalogComponent from "@/OnlyDesktop/VistaUsuario/components/pages/CatalogComponent.vue";
 import ContactComponent from "@/OnlyDesktop/VistaUsuario/components/pages/ContactComponent.vue";

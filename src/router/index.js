@@ -4,6 +4,7 @@ import ScheduleView from "@/OnlyDesktop/VistaUsuario/components/dummies/Schedule
 import AppointmentView from "@/views/AppointmentView.vue";
 import CatalogView from "@/views/CatalogView.vue";
 import ContactView from "@/views/ContactView.vue";
+import TermsAndConditionsView from "@/views/TermsAndConditionsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: ContactView,
+    },
+    {
+      path: '/termsandconditions',
+      name: 'termsandconditions',
+      component: TermsAndConditionsView,
     },
     {
       path: '/:pathMatch(.*)*',

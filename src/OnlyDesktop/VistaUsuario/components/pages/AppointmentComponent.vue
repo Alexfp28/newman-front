@@ -7,12 +7,10 @@ export default {
   name: 'AppointmentComponent',
   data() {
     return {
-      fullName: '',
-      email: '',
-      phone: '',
-      message: '',
-      personal: '',
-      hour: '',
+      appointmentCreated: false,
+      message: null,
+      personal: null,
+      hour: null,
       terms: false,
       selectPersonal: ['Peluquero 1', 'Peluquero 2', 'Peluquero 3'],
       selectHours: ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'],
@@ -76,8 +74,22 @@ export default {
 
 
 <template>
+
+  <v-snackbar
+      :timeout="3000"
+      v-model="appointmentCreated"
+      class="elevation-24"
+      color="#5ea9b8"
+      location="top right"
+  >
+    <v-icon icon="mdi-check"></v-icon>
+    Cita reservada con éxito!
+  </v-snackbar>
+
   <v-container class="appointment-container" fluid>
     <v-row>
+
+      <!-- Calendar Column -->
       <v-col>
         <section class="calendar-header">
           <v-btn @click="prevMonth">
@@ -105,6 +117,13 @@ export default {
           </section>
         </article>
       </v-col>
+
+      <!-- Help Column -->
+      <v-col class="d-flex flex-column align-center justify-center">
+        <h1 class="help-title">Pedir cita</h1>
+        <p class="help-text">Para elegir una cita nueva solo selecciona una fecha y rellena el formulario.</p>
+      </v-col>
+
     </v-row>
     <v-dialog
         v-model="selectedDate"
@@ -162,8 +181,11 @@ export default {
               density="comfortable"
               color="secondary"
               hide-details="true"
-              label="Al enviar este mensaje, acepto los términos y las condiciones de esta empresa."
-          ></v-checkbox>
+          >
+            <template v-slot:label>
+              <span>Al enviar este mensaje, aceptas los <a href="/termsandconditions" target="_blank">términos y condiciones</a>.</span>
+            </template>
+          </v-checkbox>
 
           <!-- Submit / Close Buttons -->
           <v-row class="mt-2">
@@ -173,7 +195,7 @@ export default {
                   style="color: white"
                   prepend-icon="mdi-close"
                   class="mt-2 font-weight-bold"
-                  @click="selectedDate = false"
+                  @click="selectedDate = false, personal = null , hour = null, message = null , terms = false"
                   block
               >
                 Elegir Otro Día
@@ -185,10 +207,13 @@ export default {
                   prepend-icon="mdi-check"
                   class="mt-2 font-weight-bold"
                   type="submit"
-                  @click="selectedDate = false"
-                  block>
+                  @click="selectedDate = false, personal = null , hour = null, message = null , terms = false, appointmentCreated = true"
+                  :disabled="!terms"
+                  block
+              >
                 Reserve Su Cita
               </v-btn>
+
             </v-col>
           </v-row>
 
@@ -216,5 +241,15 @@ export default {
   border-radius: 8px;
 }
 
+.help-title {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.help-text {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
 
 </style>

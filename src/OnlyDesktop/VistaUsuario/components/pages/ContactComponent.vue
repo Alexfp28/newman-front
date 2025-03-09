@@ -4,10 +4,11 @@ import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js"
 export default {
   name: "ContactComponent",
   data: () => ({
-    fullName: '',
-    email: '',
-    phone: '',
-    message: '',
+    fullName: null,
+    email: null,
+    phone: null,
+    message: null,
+    emailSent: false,
     terms: false,
     rules: {
       emptyValue: inputService.emptyValue,
@@ -15,10 +16,32 @@ export default {
       phoneNumber: inputService.phoneNumber,
     },
   }),
+  methods: {
+    sendEmail() {
+      this.emailSent = true;
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    }
+  }
+
 }
 </script>
 
 <template>
+
+  <v-snackbar
+      :timeout="3000"
+      v-model="emailSent"
+      class="elevation-24"
+      color="#5ea9b8"
+      location="top right"
+  >
+    <v-icon icon="mdi-check"></v-icon>
+    Email enviado con éxito!
+  </v-snackbar>
+
   <v-container class="contact-container" fluid>
 
     <!-- Banner -->
@@ -54,9 +77,7 @@ export default {
       <v-col class="form">
 
         <!-- Form -->
-        <v-form @submit.prevent>
-
-          <!-- Full Name -->
+        <v-form ref="contactForm" @submit.prevent="sendEmail">
           <v-text-field
               v-model="fullName"
               :rules="[rules.emptyValue]"
@@ -65,7 +86,6 @@ export default {
               variant="outlined"
           ></v-text-field>
 
-          <!-- Email -->
           <v-text-field
               v-model="email"
               :rules="[rules.email]"
@@ -75,7 +95,6 @@ export default {
               variant="outlined"
           ></v-text-field>
 
-          <!-- Phone -->
           <v-text-field
               v-model="phone"
               :rules="[rules.phoneNumber]"
@@ -84,7 +103,6 @@ export default {
               variant="outlined"
           ></v-text-field>
 
-          <!-- Message -->
           <v-textarea
               :rules="[rules.emptyValue]"
               class="form-message-field"
@@ -97,30 +115,39 @@ export default {
               variant="outlined"
           ></v-textarea>
 
-          <!-- Terms Conditions -->
           <v-checkbox
-              class="mt-3"
               v-model="terms"
               density="comfortable"
               color="secondary"
               hide-details="true"
-              label="Al enviar este mensaje, acepto los términos y las condiciones de esta empresa."
-          ></v-checkbox>
+          >
+            <template v-slot:label>
+              <span>Al enviar este mensaje, aceptas los <a href="/termsandconditions" target="_blank">términos y condiciones</a>.</span>
+            </template>
+          </v-checkbox>
 
-          <v-btn class="mt-2" type="submit" block>Contáctanos</v-btn>
-
+          <v-btn
+              class="mt-2 font-weight-bold"
+              type="submit"
+              block
+              color="#5ea9b8"
+              :disabled="!terms"
+          >
+            Contáctanos
+          </v-btn>
         </v-form>
+
       </v-col>
     </v-row>
 
+    <!-- Also in -->
     <v-row justify="center" align="center" class="alsoin">
       <!-- Título  -->
       <v-col cols="12" class="text-center">
         <h2 class="alsoin-title">También nos puedes encontrar en</h2>
       </v-col>
 
-      <v-row class="alsoin-row">
-
+      <v-row>
         <!-- Columna de Facebook -->
         <v-col>
           <v-card

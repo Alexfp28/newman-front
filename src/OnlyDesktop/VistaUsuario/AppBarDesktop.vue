@@ -7,7 +7,7 @@ const handleAvatarClick = () => {
 <template>
   <v-app-bar fixed class="app-bar" color="black" elevated>
 
-    <img src="/src/images/newmen_logo.png" alt="" class="logoH px-5">
+    <img src="/src/images/newmen_logo.jpg" alt="" class="logoH px-5">
 
     <!--HomeView-->
     <RouterLink to="/home">
