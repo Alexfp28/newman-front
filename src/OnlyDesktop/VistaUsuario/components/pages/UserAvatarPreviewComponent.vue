@@ -9,7 +9,8 @@ export default {
     username: 'Administrador',
     items: [
       { title: 'Ver perfil', icon: 'mdi-account', link: '/profileSettings' },
-      { title: 'Historial', icon: 'mdi-history', link: '/userHistory' },
+      // Esto para el modo administracion
+      // { title: 'Historial', icon: 'mdi-history', link: '/userHistory' },
     ],
   }),
 }

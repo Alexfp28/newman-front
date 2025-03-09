@@ -112,6 +112,11 @@ export default {
   </v-snackbar>
 
   <v-container class="appointment-container" fluid>
+    <!-- Help Column -->
+    <v-row class="d-flex flex-column align-center justify-center">
+      <h1 class="help-title">Pedir cita</h1>
+      <p class="help-text">Para elegir una cita nueva solo selecciona una fecha y rellena el formulario.</p>
+    </v-row>
     <v-row>
 
       <!-- Calendar Column -->
@@ -120,7 +125,7 @@ export default {
           <v-btn @click="prevMonth">
             <v-icon icon="mdi-arrow-left"/>
           </v-btn>
-          <h2>{{ monthNames[month] }} {{ year }}</h2>
+          <h1 class="month-title">{{ monthNames[month] }} {{ year }}</h1>
           <v-btn @click="nextMonth">
             <v-icon icon="mdi-arrow-right"/>
           </v-btn>
@@ -142,13 +147,6 @@ export default {
           </section>
         </article>
       </v-col>
-
-      <!-- Help Column -->
-      <v-col class="d-flex flex-column align-center justify-center">
-        <h1 class="help-title">Pedir cita</h1>
-        <p class="help-text">Para elegir una cita nueva solo selecciona una fecha y rellena el formulario.</p>
-      </v-col>
-
     </v-row>
     <v-dialog
         v-model="selectedDate"
@@ -262,6 +260,11 @@ export default {
   font-size: 18px;
   cursor: pointer;
   border-radius: 8px;
+}
+
+.month-title {
+  font-size: 2rem;
+  color: #333;
 }
 
 .help-title {

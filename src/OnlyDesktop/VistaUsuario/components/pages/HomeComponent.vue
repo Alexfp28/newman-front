@@ -48,14 +48,14 @@
 
       <!-- Columna derecha: Carrusel de imágenes -->
       <v-col cols="12" md="5" class="carousel">
-        <h2 class="text-center carousel-title">
-          Nuestros cortes de pelo
-          <v-icon>mdi-scissors-cutting</v-icon>
-        </h2>
+<!--        <h2 class="text-center carousel-title">-->
+<!--          Nuestros cortes de pelo-->
+<!--          <v-icon>mdi-scissors-cutting</v-icon>-->
+<!--        </h2>-->
         <v-carousel
             :show-arrows="false"
             hide-delimiters
-            height="600"
+            height="800"
             cycle
         >
           <v-carousel-item
@@ -144,8 +144,8 @@ export default {
       services: [
         {
           icon: 'mdi-scissors-cutting',
-          title: 'Cortes de Cabello',
-          description: 'Estilos modernos y clásicos para todas las edades.',
+          title: 'Cortes',
+          description: 'Estilos modernos y clásicos de cabello para todas las edades.',
         },
         {
           icon: 'mdi-face-woman-shimmer',

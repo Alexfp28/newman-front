@@ -41,11 +41,11 @@ const router = createRouter({
       name: 'profileSettings',
       component: UserProfileSettingsView,
     },
-    {
-      path: '/userHistory',
-      name: 'userHistory',
-      component: UserHistoryView,
-    },
+    // {
+    //   path: '/userHistory',
+    //   name: 'userHistory',
+    //   component: UserHistoryView,
+    // },
     {
       path: '/termsandconditions',
       name: 'termsandconditions',
