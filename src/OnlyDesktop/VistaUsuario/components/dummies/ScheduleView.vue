@@ -1,5 +1,5 @@
 <script setup>
-import ScheduleComponent from "@/OnlyDesktop/VistaUsuario/components/pages/ScheduleComponent.vue";
+import ScheduleComponent from "@/OnlyDesktop/VistaUsuario/components/dummies/ScheduleComponent.vue";
 </script>
 
 <template>

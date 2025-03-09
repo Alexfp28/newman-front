@@ -6,6 +6,7 @@ import CatalogView from "@/views/CatalogView.vue";
 import ContactView from "@/views/ContactView.vue";
 import UserProfileSettingsView from "@/views/UserProfileSettingsView.vue";
 import UserHistoryView from "@/views/UserHistoryView.vue";
+import TermsAndConditionsView from "@/views/TermsAndConditionsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/userHistory',
       name: 'userHistory',
       component: UserHistoryView,
+    },
+    {
+      path: '/termsandconditions',
+      name: 'termsandconditions',
+      component: TermsAndConditionsView,
     },
     {
       path: '/:pathMatch(.*)*',
