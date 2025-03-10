@@ -121,7 +121,7 @@ export default {
 
       <!-- Calendar Column -->
       <v-col>
-        <section class="calendar-header">
+          <section class="calendar-header">
           <v-btn @click="prevMonth">
             <v-icon icon="mdi-arrow-left"/>
           </v-btn>
