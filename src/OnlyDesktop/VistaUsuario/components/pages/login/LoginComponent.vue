@@ -1,206 +1,148 @@
 <script setup>
 import {ref} from 'vue';
+import {inputService} from '@/OnlyDesktop/VistaUsuario/services/InputService.js';
 
-const dialog_iniciar_sesion = ref(false);
-const dialog_crear_cuenta = ref(false);
+// Estado de los tabs
+const tab = ref('login');
 
+// Datos del formulario
+const email = ref('');
+const password = ref('');
+const fullName = ref('');
+const phone = ref('');
+
+// Snackbars
 const snackbar_inicio_sesion = ref(false);
 const snackbar_crear_cuenta = ref(false);
-
 const text_snackbar_iniciar_sesion = ref("Aviso de inicio de sesión");
 const text_snackbar_crear_cuenta = ref("Aviso de crear cuenta");
 
+// Reglas de validación
+const rules = {
+  emptyValue: inputService.emptyValue,
+  email: inputService.email,
+  phoneNumber: inputService.phoneNumber,
+  password: inputService.password,
+};
 </script>
 
 <template>
+  <v-container class="login-container">
+    <v-card class="auth-card">
 
-<!--  <v-row style="margin: 10px">-->
-<!--    <v-btn id="btn_iniciar_sesion"-->
-<!--           prepend-icon="mdi-account"-->
-<!--           text="Iniciar Sesión"-->
-<!--           variant="tonal"-->
-<!--           @click="dialog_iniciar_sesion = true"-->
-<!--    ></v-btn>-->
-<!--    <v-btn id="btn_crear_cuenta"-->
-<!--           prepend-icon="mdi-account-plus"-->
-<!--           text="Crear Cuenta"-->
-<!--           variant="tonal"-->
-<!--           @click="dialog_crear_cuenta = true"-->
-<!--    ></v-btn>-->
-<!--  </v-row>-->
+      <!-- Tabs -->
+      <v-tabs v-model="tab" align-tabs="center">
+        <v-tab value="login">Iniciar Sesión</v-tab>
+        <v-tab value="register">Crear Cuenta</v-tab>
+      </v-tabs>
 
-<!--  <div id="dialog_iniciar_sesion">-->
-  <section class="login login-container">
-
-<!--    <section class="cardTitle text-center">-->
-<!--      <h1 class="help-title">Iniciar Sesion</h1>-->
-<!--      <p class="help-text">Para elegir una cita nueva solo selecciona una fecha y rellena el formulario.</p>-->
-<!--    </section>-->
-
-    <v-card
-        prepend-icon="mdi-account"
-        title="Iniciar Sesión"
-        class="pa-5 cardLogin"
-    >
-      <v-card-text>
-        <v-row dense>
-          <v-col
-              cols="12"
-          >
+      <v-window v-model="tab">
+        <!-- Formulario de Login -->
+        <v-window-item value="login">
+          <v-card-text>
             <v-text-field
-                label="Email*"
+                v-model="email"
+                :rules="[rules.email]"
+                label="Email"
+                type="email"
+                prepend-icon="mdi-email"
                 variant="outlined"
-                required
             ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row dense>
-          <v-col
-              cols="12"
-          >
+
             <v-text-field
-                label="Contraseña*"
+                v-model="password"
+                :rules="[rules.password]"
+                label="Contraseña"
                 type="password"
+                prepend-icon="mdi-lock"
                 variant="outlined"
                 required
             ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-card-text>
 
-      <v-card-actions>
-        <v-btn
-            text="Iniciar Sesión"
-            variant="tonal"
-            @click=""
-        ></v-btn>
+          </v-card-text>
 
-        <v-btn
-            text="Registrarse"
-            variant="plain"
-            @click=""
-        ></v-btn>
-      </v-card-actions>
+          <v-card-actions>
+            <v-btn text="Iniciar Sesión" variant="tonal" @click="snackbar_inicio_sesion = true"></v-btn>
+          </v-card-actions>
+        </v-window-item>
+
+        <!-- Formulario de Registro -->
+        <v-window-item value="register">
+          <v-card-text>
+
+            <v-text-field
+                prepend-icon="mdi-account"
+                :rules="[rules.emptyValue]"
+                v-model="fullName"
+                label="Nombre"
+                variant="outlined"
+                required
+            ></v-text-field>
+
+            <v-text-field
+                v-model="email"
+                prepend-icon="mdi-email"
+                :rules="[rules.email]"
+                label="Email"
+                variant="outlined"
+                required
+            ></v-text-field>
+
+            <v-text-field
+                v-model="password"
+                :rules="[rules.password]"
+                label="Contraseña"
+                type="password"
+                prepend-icon="mdi-lock"
+                variant="outlined"
+                required
+            ></v-text-field>
+
+
+            <v-text-field
+                v-model="phone"
+                prepend-icon="mdi-cellphone"
+                :rules="[rules.phoneNumber]"
+                label="Teléfono"
+                variant="outlined"
+                required
+            ></v-text-field>
+
+          </v-card-text>
+
+          <v-card-actions>
+            <v-btn text="Crear Cuenta" variant="tonal" @click="snackbar_crear_cuenta = true"></v-btn>
+          </v-card-actions>
+        </v-window-item>
+      </v-window>
     </v-card>
-  </section>
+  </v-container>
 
-  <section class="login-container">
-    <v-card
-        prepend-icon="mdi-account-plus"
-        title="Crear Cuenta"
-    >
-      <v-card-text>
+  <!-- Snackbars -->
+  <v-snackbar v-model="snackbar_inicio_sesion">
+    {{ text_snackbar_iniciar_sesion }}
+    <v-btn color="pink" variant="text" @click="snackbar_inicio_sesion = false">Cerrar</v-btn>
+  </v-snackbar>
 
-        <v-row dense>
-          <v-text-field
-              label="Nombre"
-              variant="outlined"
-              required
-          ></v-text-field>
-        </v-row>
-
-        <v-row dense>
-          <v-text-field
-              label="Email"
-              variant="outlined"
-              required
-          ></v-text-field>
-        </v-row>
-
-        <v-row dense>
-          <v-text-field
-              label="Contraseña"
-              variant="outlined"
-              type="password"
-              required
-          ></v-text-field>
-          <v-spacer></v-spacer>
-          <v-text-field
-              label="Teléfono"
-              variant="outlined"
-              required
-          ></v-text-field>
-        </v-row>
-
-      </v-card-text>
-
-      <v-card-actions>
-
-        <v-btn
-            text="Crear Cuenta"
-            variant="tonal"
-            @click="dialog_crear_cuenta = false; snackbar_crear_cuenta = true"
-        ></v-btn>
-
-        <v-btn
-            text="Cancelar"
-            variant="plain"
-            @click="dialog_crear_cuenta = false"
-        ></v-btn>
-
-      </v-card-actions>
-    </v-card>
-  </section>
-
-<!--  </div>-->
-  <div id="snackbar_inicio_sesion">
-    <v-snackbar
-        v-model="snackbar_inicio_sesion"
-    >
-      {{ text_snackbar_iniciar_sesion }}
-
-      <v-btn
-          color="pink"
-          variant="text"
-          @click="snackbar_inicio_sesion = false"
-      >
-      </v-btn>
-    </v-snackbar>
-  </div>
-  <div id="snackbar_crear_cuenta">
-    <v-snackbar
-        v-model="snackbar_crear_cuenta"
-    >
-      {{ text_snackbar_crear_cuenta }}
-
-      <v-btn
-          color="pink"
-          variant="text"
-          @click="snackbar_crear_cuenta = false"
-      >
-      </v-btn>
-    </v-snackbar>
-  </div>
-
+  <v-snackbar v-model="snackbar_crear_cuenta">
+    {{ text_snackbar_crear_cuenta }}
+    <v-btn color="pink" variant="text" @click="snackbar_crear_cuenta = false">Cerrar</v-btn>
+  </v-snackbar>
 </template>
 
 <style scoped>
-
-.login {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f8f8;
 }
 
-.cardTitle {
-  grid-column-start: 2;
-  grid-row-start: 1;
-}
-
-.cardLogin {
-  grid-column-start: 2;
-  grid-row-start: 2;
-  height: 100%;
-}
-
-.help-title {
-  font-size: 2.5rem;
-  color: #333;
-}
-
-.help-text {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 1.5rem;
+.auth-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 40px;
 }
 </style>
