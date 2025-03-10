@@ -188,7 +188,6 @@ export default {
               class="form-message-field"
               variant="outlined"
               v-model="message"
-              :rules="[rules.emptyValue]"
               label="Mensaje"
               prepend-icon="mdi-text-box"
               maxlength="200"

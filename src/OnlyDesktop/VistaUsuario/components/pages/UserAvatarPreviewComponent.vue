@@ -59,9 +59,17 @@ export default {
           </v-list-item>
         </v-list>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
+        <RouterLink to="/login" class="no-decoration">
+          <v-btn
+              color="blue"
+              variant="text"
+              @click="menu = false"
+          >
+            Iniciar Sesion
+          </v-btn>
+        </RouterLink>
 
+        <RouterLink to="/login" class="no-decoration">
           <v-btn
               color="red"
               variant="text"
@@ -69,7 +77,8 @@ export default {
           >
             Cerrar Sesion
           </v-btn>
-        </v-card-actions>
+        </RouterLink>
+
       </v-card>
     </v-menu>
   </div>
