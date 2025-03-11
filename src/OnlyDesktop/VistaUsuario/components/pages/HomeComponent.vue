@@ -328,4 +328,17 @@ export default {
   margin-bottom: 1.5rem;
 }
 
+/* Versión de móviles */
+@media (max-width: 768px) {
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .carousel {
+    display: none;
+  }
+
+}
+
 </style>

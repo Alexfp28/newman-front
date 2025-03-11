@@ -11,17 +11,28 @@
 
 .home-container, .contact-container, .appointment-container, .catalog-container, .terms-container , .login-container{
   padding: 5% 6.5% 4% 6.5% !important;
+  margin-top: 80px;
+}
+
+/* CSS para móviles */
+@media (max-width: 768px) {
+  .home-container,
+  .contact-container,
+  .appointment-container,
+  .catalog-container,
+  .terms-container{
+
+    .logoH {
+      width: 90px;
+    }
+
+    margin-top: 80px;
+
+  }
 }
 
 a {
   margin: 1px;
-}
-
-state-in-hover {}
-
-state-in-hover:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 /*@media (hover: hover) {*/

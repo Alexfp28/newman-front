@@ -42,7 +42,7 @@ export default {
 
       try {
         const response = await controllerService.saveContact(contactData);
-        console.log("Cita creada con éxito:", response);
+        console.log("Email enviado:", response);
         this.emailSent = true;
 
         // Recargar la página después de un tiempo
@@ -50,8 +50,8 @@ export default {
           window.location.reload();
         }, 1200);
       } catch (error) {
-        console.error("Hubo un problema al reservar la cita", error);
-        alert("Hubo un problema al reservar la cita.");
+        console.error("Hubo un problema al enviar el email", error);
+        alert("Hubo un problema al enviar el mail.");
       }
     },
 
@@ -65,7 +65,6 @@ export default {
 </script>
 
 <template>
-
   <v-snackbar
       :timeout="3000"
       v-model="emailSent"
@@ -78,7 +77,6 @@ export default {
   </v-snackbar>
 
   <v-container class="contact-container" fluid>
-
     <!-- Banner -->
     <div class="banner">
       <v-img
@@ -95,13 +93,12 @@ export default {
     </div>
 
     <v-row class="map-form">
-
       <!-- Map -->
-      <v-col class="map">
+      <v-col class="map" cols="12" sm="6">
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.829108202451!2d-0.22835036848151077!3d39.820818384757445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd600dfe9051f76b%3A0xa6addab9bdee4cda!2sNewmen!5e0!3m2!1ses!2ses!4v1740694439647!5m2!1ses!2ses"
             width="100%"
-            height="500px"
+            height="350px"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
@@ -109,9 +106,8 @@ export default {
         </iframe>
       </v-col>
 
-      <v-col class="form">
-
-        <!-- Form -->
+      <!-- Form -->
+      <v-col class="form" cols="12" sm="6">
         <v-form ref="contactForm">
           <v-text-field
               v-model="fullName"
@@ -171,24 +167,18 @@ export default {
             Contáctanos
           </v-btn>
         </v-form>
-
       </v-col>
     </v-row>
 
     <!-- Also in -->
     <v-row justify="center" align="center" class="alsoin">
-      <!-- Título  -->
       <v-col cols="12" class="text-center">
         <h2 class="alsoin-title">También nos puedes encontrar en</h2>
       </v-col>
 
       <v-row>
-        <!-- Columna de Facebook -->
-        <v-col>
-          <v-card
-              class="pa-4 rounded-lg elevation-3 text-center"
-              color="white"
-          >
+        <v-col cols="12" sm="6" md="4">
+          <v-card class="pa-4 rounded-lg elevation-3 text-center" color="white">
             <v-card-title class="text-h6 font-weight-bold">
               <v-icon color="blue" size="60">mdi-facebook</v-icon>
             </v-card-title>
@@ -200,12 +190,8 @@ export default {
           </v-card>
         </v-col>
 
-        <!-- Columna con los horarios -->
-        <v-col>
-          <v-card
-              class="pa-4 rounded-lg elevation-3"
-              color="white"
-          >
+        <v-col cols="12" sm="6" md="4">
+          <v-card class="pa-4 rounded-lg elevation-3" color="white">
             <v-card-title class="text-h6 font-weight-bold">
               Horario
             </v-card-title>
@@ -218,10 +204,9 @@ export default {
         </v-col>
       </v-row>
     </v-row>
-
-
   </v-container>
 </template>
+
 
 <style scoped>
 .contact-container {
@@ -243,8 +228,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 4rem;
-  height: 100%;
+  padding: 2rem;
+  flex-wrap: wrap;
 }
 
 .map {
@@ -253,7 +238,7 @@ export default {
 
 .form {
   max-width: 50%;
-  padding: 0 5% 0 5%
+  padding: 0 5%;
 }
 
 .form-message-field {
@@ -281,5 +266,39 @@ a {
 
 .v-text-field, .v-text-area {
   padding: 2px !important;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .banner-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .map-form {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .form {
+    max-width: 100%;
+  }
+
+  .map iframe {
+    height: 350px;
+  }
+
+  .alsoin-title {
+    font-size: 1.8rem;
+  }
+
+  .alsoin {
+    background-color: #ececec;
+    padding: 6%;
+    border-radius: 40px;
+  }
+
+  .map, .form {
+    padding: 3%;
+  }
 }
 </style>

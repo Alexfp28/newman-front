@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import AppBarDesktop from '/src/OnlyDesktop/VistaUsuario/AppBarDesktop.vue'
+import AppBarMobile from '/src/OnlyMobilePhone/AppBarMobile.vue'
 const phoneSized = ["xs","sm","md"]
 </script>
 
@@ -8,10 +9,9 @@ const phoneSized = ["xs","sm","md"]
   <v-app>
 
     <AppBarDesktop v-if="!phoneSized.includes($vuetify.display.name)"/>
-<!--    <AppBarMobile v-else/>-->
+    <AppBarMobile v-else/>
 
-    <v-main>
-      <RouterView />
-    </v-main>
+    <RouterView/>
+
   </v-app>
 </template>

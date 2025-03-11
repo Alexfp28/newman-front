@@ -111,7 +111,6 @@ export default {
 };
 </script>
 
-
 <template>
 
   <v-snackbar
@@ -126,17 +125,12 @@ export default {
   </v-snackbar>
 
   <v-container class="appointment-container" fluid>
-    <!-- Help Column -->
-    <v-row class="d-flex flex-column align-center justify-center">
-      <h1 class="help-title">Pedir cita</h1>
-      <p class="help-text">Para elegir una cita nueva solo selecciona una fecha y rellena el formulario.</p>
-    </v-row>
     <v-row>
 
       <!-- Calendar Column -->
       <v-col>
-          <section class="calendar-header">
-          <v-btn @click="prevMonth">
+        <section class="calendar-header">
+          <v-btn @click="prevMonth" :disabled="month === new Date().getMonth() && year === new Date().getFullYear()">
             <v-icon icon="mdi-arrow-left"/>
           </v-btn>
           <h1 class="month-title">{{ monthNames[month] }} {{ year }}</h1>
@@ -151,10 +145,11 @@ export default {
                 v-if="day !== null"
                 class="calendar-cell"
                 :class="{
-              'calendar-today': isToday(day),
-              'calendar-selected': isSelected(day),
-            }"
-                @click="selectDate(day)"
+                          'calendar-today': isToday(day),
+                          'calendar-selected': isSelected(day),
+                          'calendar-disabled': day.disabled
+                }"
+                @click="!day.disabled && selectDate(day)"
             >
               {{ day.date }}
             </section>
@@ -265,14 +260,23 @@ export default {
   gap: 8px;
 }
 
+.calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
 .calendar-cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
   font-size: 18px;
   cursor: pointer;
   border-radius: 8px;
+  width: 100%;
+  height: 90px;
 }
 
 .month-title {
@@ -280,15 +284,28 @@ export default {
   color: #333;
 }
 
-.help-title {
-  font-size: 2.5rem;
-  color: #333;
+.calendar-disabled {
+  color: #aaa;
+  background-color: #f5f5f5;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
-.help-text {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 1.5rem;
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .calendar-cell {
+    height: 70px;
+    font-size: 20px;
+  }
+
+  .month-title {
+    font-size: 1.5rem;
+  }
+
 }
+
 
 </style>

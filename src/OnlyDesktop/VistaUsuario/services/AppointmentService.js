@@ -1,9 +1,12 @@
 // appointmentService.js
 
 export const appointmentService = {
-    // Obtener el primer día del mes
+
+    // Obtener el primer día del mes con lunes como el primer día de la semana
     getFirstDayOfMonth(month, year) {
-        return new Date(year, month, 1).getDay();
+        const firstDay = new Date(year, month, 1).getDay();
+        // Si el día es domingo (0), lo cambiamos a 6 para que sea el último día de la semana
+        return firstDay === 0 ? 6 : firstDay - 1;
     },
 
     // Obtener el número de días en el mes
@@ -16,6 +19,8 @@ export const appointmentService = {
         const daysInMonth = this.getDaysInMonth(month, year);
         const firstDay = this.getFirstDayOfMonth(month, year);
         const days = [];
+        const today = new Date();
+        const isCurrentMonth = month === today.getMonth() && year === today.getFullYear();
 
         // Llenar los días previos al primer día del mes
         for (let i = 0; i < firstDay; i++) {
@@ -24,7 +29,8 @@ export const appointmentService = {
 
         // Llenar los días del mes
         for (let i = 1; i <= daysInMonth; i++) {
-            days.push({ date: i });
+            const isPastDay = isCurrentMonth && i < today.getDate();
+            days.push({ date: i, disabled: isPastDay });
         }
 
         // Asegurarse de que el calendario tenga 6 filas (de 7 días)
