@@ -2,13 +2,14 @@
 import "@/OnlyDesktop/VistaUsuario/styles/appointment-component.css";
 import {appointmentService} from "@/OnlyDesktop/VistaUsuario/services/AppointmentService.js";
 import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js";
+import {controllerService} from "@/OnlyDesktop/VistaUsuario/services/ControllerService.js";
 
 export default {
   name: "AppointmentComponent",
   data() {
     return {
       appointmentCreated: false,
-      message: null,
+      description: null,
       personal: null,
       hour: null,
       terms: false,
@@ -65,8 +66,7 @@ export default {
     async validate() {
       const {valid} = await this.$refs.form.validate();
       if (valid) {
-        this.appointmentCreated = true;
-        this.sendAppointment();
+        await this.sendAppointment();
       }
     },
 
@@ -77,16 +77,30 @@ export default {
     },
 
     // Enviar la cita
-    sendAppointment() {
+    async sendAppointment() {
       console.log("Cita enviada!");
+      const appointmentData = {
+        // TODO ALOPEZ ->  Aqui hay que poner el usuario que ha iniciado sesion.
+        // user: this.user
+        date: this.selectedDate,  // Fecha seleccionada
+        hour: this.hour,  // Hora seleccionada
+        personal: this.personal,  // Personal seleccionado
+        description: this.description || "",  // Mensaje opcional
+      };
 
-      //--------------------------------------
-      // Aquí deberemos mandar la info al back
-      //--------------------------------------
+      try {
+        const response = await controllerService.saveAppointment(appointmentData);
+        console.log("Cita creada con éxito:", response);
+        this.appointmentCreated = true;
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 1200);
+        // Recargar la página después de un tiempo
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200);
+      } catch (error) {
+        console.error("Hubo un problema al reservar la cita", error);
+        alert("Hubo un problema al reservar la cita.");
+      }
     },
 
     // Resetear el formulario
@@ -185,9 +199,9 @@ export default {
           <v-spacer class="mt-2 mb-1"/>
 
           <v-textarea
-              class="form-message-field"
+              class="form-description-field"
               variant="outlined"
-              v-model="message"
+              v-model="description"
               label="Mensaje"
               prepend-icon="mdi-text-box"
               maxlength="200"

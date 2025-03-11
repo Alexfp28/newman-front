@@ -1,5 +1,6 @@
 <script>
 import {inputService} from "@/OnlyDesktop/VistaUsuario/services/InputService.js";
+import {controllerService} from "@/OnlyDesktop/VistaUsuario/services/ControllerService.js";
 
 export default {
   name: "ContactComponent",
@@ -22,13 +23,35 @@ export default {
     async sendEmail() {
       const {valid} = await this.$refs.contactForm.validate();
       if (valid) {
-        this.emailSent = true;
-
         //--------------------------------------
         // Aquí deberemos mandar la info al back
         //--------------------------------------
+        await this.sendContact();
 
         this.reset()
+      }
+    },
+
+    async sendContact() {
+      const contactData = {
+        name: this.fullName,
+        email: this.email,
+        phone: this.phone,
+        message: this.message,
+      }
+
+      try {
+        const response = await controllerService.saveContact(contactData);
+        console.log("Cita creada con éxito:", response);
+        this.emailSent = true;
+
+        // Recargar la página después de un tiempo
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200);
+      } catch (error) {
+        console.error("Hubo un problema al reservar la cita", error);
+        alert("Hubo un problema al reservar la cita.");
       }
     },
 

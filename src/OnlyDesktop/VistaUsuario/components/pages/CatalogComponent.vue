@@ -3,6 +3,8 @@ export default {
   name: "CatalogComponent",
   data() {
     return {
+      // TODO ALOPEZ -> Aqui tienes que hacer una llamada al back a la tabla nueva de productos
+      // Si no existe la tabla creala con los campos pertinentes y la llamada getProducts()
       products: [
         {"id": 1, "title": "Producto 1", "subtitle": "Categoría A", "description": "Descripción del producto 1."},
         {"id": 2, "title": "Producto 2", "subtitle": "Categoría B", "description": "Descripción del producto 2."},
