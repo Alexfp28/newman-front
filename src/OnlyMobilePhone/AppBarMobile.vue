@@ -14,7 +14,10 @@ export default defineComponent({
 <template>
   <v-app-bar fixed color="black" elevated>
     <v-app-bar-nav-icon @click="drawer = !drawer" color="white"/>
-    <img src="/src/images/newmen_logo.jpg" alt="Logo" class="logoH px-5"/>
+    <v-spacer></v-spacer>
+    <router-link to="/home">
+      <img src="/src/images/newmen_logo.jpg" alt="Logo" class="logoH px-5"/>
+    </router-link>
     <v-spacer></v-spacer>
     <UserComponent/>
   </v-app-bar>

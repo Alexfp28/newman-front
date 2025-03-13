@@ -258,7 +258,7 @@ export default {
 .carousel, .opinions{
   background-color: #ececec;
   padding: 5%;
-  border-radius: 5%;
+  border-radius: 40px;
 }
 
 .carousel-title {

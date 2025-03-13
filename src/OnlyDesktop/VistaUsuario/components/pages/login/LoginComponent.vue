@@ -27,7 +27,7 @@ const rules = {
 </script>
 
 <template>
-  <v-container class="login-container">
+  <v-container class="login-container" fluid style="margin-top: -20px">
     <v-card class="auth-card">
 
       <!-- Tabs -->

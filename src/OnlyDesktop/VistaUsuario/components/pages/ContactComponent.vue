@@ -86,25 +86,13 @@ export default {
           src="src/images/newmen.png"
           class="image-container"
       >
-        <div class="banner-content">
+        <div class="banner-content font-weight-bold">
           <h1>Aquí para lo que necesites!</h1>
         </div>
       </v-img>
     </div>
 
     <v-row class="map-form">
-      <!-- Map -->
-      <v-col class="map" cols="12" sm="6">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.829108202451!2d-0.22835036848151077!3d39.820818384757445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd600dfe9051f76b%3A0xa6addab9bdee4cda!2sNewmen!5e0!3m2!1ses!2ses!4v1740694439647!5m2!1ses!2ses"
-            width="100%"
-            height="350px"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </v-col>
 
       <!-- Form -->
       <v-col class="form" cols="12" sm="6">
@@ -147,6 +135,7 @@ export default {
           ></v-textarea>
 
           <v-checkbox
+              style="margin-top: 25px"
               v-model="terms"
               density="comfortable"
               color="secondary"
@@ -168,6 +157,20 @@ export default {
           </v-btn>
         </v-form>
       </v-col>
+
+      <!-- Map -->
+      <v-col class="map" cols="12" sm="6">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.829108202451!2d-0.22835036848151077!3d39.820818384757445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd600dfe9051f76b%3A0xa6addab9bdee4cda!2sNewmen!5e0!3m2!1ses!2ses!4v1740694439647!5m2!1ses!2ses"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </v-col>
+
     </v-row>
 
     <!-- Also in -->
@@ -176,9 +179,9 @@ export default {
         <h2 class="alsoin-title">También nos puedes encontrar en</h2>
       </v-col>
 
-      <v-row>
-        <v-col cols="12" sm="6" md="4">
-          <v-card class="pa-4 rounded-lg elevation-3 text-center" color="white">
+      <v-row justify="center" spacing="4">
+        <v-col cols="12" sm="6" md="6" class="d-flex justify-center">
+          <v-card class="pa-4 rounded-lg elevation-3 text-center" color="white" style="height: 100%; width: 100%">
             <v-card-title class="text-h6 font-weight-bold">
               <v-icon color="blue" size="60">mdi-facebook</v-icon>
             </v-card-title>
@@ -190,12 +193,12 @@ export default {
           </v-card>
         </v-col>
 
-        <v-col cols="12" sm="6" md="4">
-          <v-card class="pa-4 rounded-lg elevation-3" color="white">
-            <v-card-title class="text-h6 font-weight-bold">
+        <v-col cols="12" sm="6" md="6" class="d-flex justify-center">
+          <v-card class="pa-4 rounded-lg elevation-3" color="white" style="height: 100%; width: 100%">
+            <v-card-title class="text-h6 font-weight-bold text-center">
               Horario
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="text-center">
               Lunes - Viernes: X:XX AM - X:XX PM <br>
               Sábado: X:XX AM - X:XX PM <br>
               Domingo: Cerrado
@@ -204,6 +207,7 @@ export default {
         </v-col>
       </v-row>
     </v-row>
+
   </v-container>
 </template>
 
@@ -228,7 +232,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 2rem;
+  padding: 3rem;
   flex-wrap: wrap;
 }
 
@@ -265,7 +269,7 @@ a {
 }
 
 .v-text-field, .v-text-area {
-  padding: 2px !important;
+  padding: 3px !important;
 }
 
 /* Media Queries */
@@ -276,7 +280,7 @@ a {
 
   .map-form {
     flex-direction: column;
-    padding: 2rem;
+    padding: 1rem;
   }
 
   .form {
