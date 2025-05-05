@@ -16,7 +16,7 @@ export default defineComponent({
     <v-app-bar-nav-icon @click="drawer = !drawer" color="white"/>
     <v-spacer></v-spacer>
     <router-link to="/home">
-      <img src="/images/newmen_logo.jpg" alt="Logo" class="logoH px-5"/>
+      <img src="https://github.com/Alexfp28/newman-front/blob/main/public/images/newmen_logo.jpg" alt="Logo" class="logoH px-5"/>
     </router-link>
     <v-spacer></v-spacer>
     <UserComponent/>
