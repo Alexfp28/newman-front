@@ -28,7 +28,7 @@ export default {
         <v-avatar
             color="info"
             size="large"
-            image="https://github.com/Alexfp28/newman-front/blob/main/public/images/unknow_user.jpg"
+            image="https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/unknow_user.jpg"
             class="clickable-avatar"
             style="margin-right: 10px"
             v-bind="props"
@@ -39,7 +39,7 @@ export default {
       <v-card min-width="300">
         <v-list>
           <v-list-item
-              prepend-avatar="https://github.com/Alexfp28/newman-front/blob/main/public/images/unknow_user.jpg"
+              prepend-avatar="https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/unknow_user.jpg"
               :title="username"
           >
           </v-list-item>

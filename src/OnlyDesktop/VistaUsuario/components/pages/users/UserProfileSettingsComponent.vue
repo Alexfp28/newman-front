@@ -14,7 +14,7 @@ export default {
       email: inputService.email,
       phoneNumber: inputService.phoneNumber,
     },
-    profileImage: "https://github.com/Alexfp28/newman-front/blob/main/public/images/unknow_user.jpg",
+    profileImage: "https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/unknow_user.jpg",
   }),
   methods: {
     selectImage() {

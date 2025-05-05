@@ -73,7 +73,7 @@
     <!-- Sección Sobre Nosotras -->
     <v-row justify="center" align="center" class="about-us-section">
       <v-col class="image-container">
-        <v-img src="https://github.com/Alexfp28/newman-front/blob/main/public/images/employees/employee1.jpg" class="about-image left-image" cover></v-img>
+        <v-img src="https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/employees/employee1.jpg" class="about-image left-image" cover></v-img>
       </v-col>
       <v-col cols="12" md="6" class="text-center">
         <h2 class="about-title">Sobre Nosotras</h2>
@@ -84,7 +84,7 @@
         </p>
       </v-col>
       <v-col class="image-container">
-        <v-img src="https://github.com/Alexfp28/newman-front/blob/main/public/images/employees/employee2.jpg" class="about-image right-image" cover></v-img>
+        <v-img src="https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/employees/employee2.jpg" class="about-image right-image" cover></v-img>
       </v-col>
     </v-row>
 
@@ -159,9 +159,9 @@ export default {
         },
       ],
       haircutImages: [
-        'https://github.com/Alexfp28/newman-front/blob/main/public/images/haircuts/haircut_1.png',
-        'https://github.com/Alexfp28/newman-front/blob/main/public/images/haircuts/haircut_2.png',
-        'https://github.com/Alexfp28/newman-front/blob/main/public/images/haircuts/haircut_3.png',
+        'https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/haircuts/haircut_1.png',
+        'https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/haircuts/haircut_2.png',
+        'https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/haircuts/haircut_3.jpg',
       ],
       opinions: [
         {

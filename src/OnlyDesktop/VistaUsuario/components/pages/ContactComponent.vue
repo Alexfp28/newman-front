@@ -84,7 +84,7 @@ export default {
           :width="1800"
           :max-height="400"
           cover
-          src="/images/newmen.png"
+          src="https://raw.githubusercontent.com/Alexfp28/newman-front/refs/heads/main/public/images/newmen.png"
           class="blur-image"
       />
       <div class="banner-content font-weight-bold">
