@@ -7,7 +7,6 @@ const phoneSized = ["xs","sm","md"]
 
 <template>
   <v-app>
-
     <AppBarDesktop v-if="!phoneSized.includes($vuetify.display.name)"/>
     <AppBarMobile v-else/>
 
