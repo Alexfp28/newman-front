@@ -14,7 +14,7 @@ export default {
       email: inputService.email,
       phoneNumber: inputService.phoneNumber,
     },
-    profileImage: "/src/images/unknow_user.jpg",
+    profileImage: "/images/unknow_user.jpg",
   }),
   methods: {
     selectImage() {

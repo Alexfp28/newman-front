@@ -28,7 +28,7 @@ export default {
         <v-avatar
             color="info"
             size="large"
-            image="/src/images/unknow_user.jpg"
+            image="/images/unknow_user.jpg"
             class="clickable-avatar"
             style="margin-right: 10px"
             v-bind="props"
@@ -39,7 +39,7 @@ export default {
       <v-card min-width="300">
         <v-list>
           <v-list-item
-              prepend-avatar="/src/images/unknow_user.jpg"
+              prepend-avatar="/images/unknow_user.jpg"
               :title="username"
           >
           </v-list-item>

@@ -78,18 +78,18 @@ export default {
 
   <v-container class="contact-container" fluid>
     <!-- Banner -->
-    <div class="banner">
+    <!-- Banner -->
+    <div class="banner image-wrapper">
       <v-img
           :width="1800"
           :max-height="400"
           cover
-          src="src/images/newmen.png"
-          class="image-container"
-      >
-        <div class="banner-content font-weight-bold">
-          <h1>Aquí para lo que necesites!</h1>
-        </div>
-      </v-img>
+          src="/images/newmen.png"
+          class="blur-image"
+      />
+      <div class="banner-content font-weight-bold">
+        <h1>Aquí para lo que necesites!</h1>
+      </div>
     </div>
 
     <v-row class="map-form">
@@ -213,8 +213,16 @@ export default {
 
 
 <style scoped>
+
 .contact-container {
   justify-content: center;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
 }
 
 .banner-content {
@@ -226,6 +234,13 @@ export default {
   font-weight: 900;
   font-size: 2rem;
   text-align: center;
+  z-index: 2;
+}
+
+.blur-image {
+  filter: blur(2px);
+  width: 100%;
+  height: 100%;
 }
 
 .map-form {
