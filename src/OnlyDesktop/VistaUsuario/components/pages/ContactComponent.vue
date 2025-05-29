@@ -82,7 +82,7 @@ export default {
       <v-img
           :max-height="400"
           cover
-          src="src/images/newmen.png"
+          src="public/images/newmen.png"
           class="image-container mx-auto"
       >
         <div class="banner-content font-weight-bold">

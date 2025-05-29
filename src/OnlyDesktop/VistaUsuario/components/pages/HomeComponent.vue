@@ -7,10 +7,10 @@
       <!-- Columna izquierda: Bienvenida y Servicios -->
       <v-col cols="12" md="5">
         <!-- Sección de Bienvenida -->
-        <v-row justify="center" align="center">
+        <v-row justify="center" align="center" class="title-section">
           <v-col cols="12" class="text-center">
             <h1 class="title">
-              Bienvenid@ a NewMen
+              Bienvenid@ a <span>NewMen</span>
             </h1>
             <p class="welcome-text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam, asperiores dolore, dolorem enim
@@ -54,7 +54,7 @@
             height="100%"
             aspect-ratio="1/1"
             cover
-            src="src/images/newmen.png"
+            src="public/images/newmen.png"
             class="imagen-bienvenida">
         </v-img>
       </v-col>
@@ -64,7 +64,7 @@
     <!-- Sección Sobre Nosotras -->
     <v-row justify="center" align="center" class="about-us-section">
       <v-col class="image-container">
-        <v-img src="src/images/employees/employee1.jpg" class="about-image left-image" cover></v-img>
+        <v-img src="public/images/employees/employee1.jpg" class="about-image left-image" cover></v-img>
       </v-col>
       <v-col cols="12" md="6" class="text-center">
         <h2 class="about-title">Sobre Nosotras</h2>
@@ -75,12 +75,12 @@
         </p>
       </v-col>
       <v-col class="image-container">
-        <v-img src="src/images/employees/employee2.jpg" class="about-image right-image" cover></v-img>
+        <v-img src="public/images/employees/employee2.jpg" class="about-image right-image" cover></v-img>
       </v-col>
     </v-row>
 
     <!-- Sección Nuestros Clientes -->
-    <v-row justify="center" align="center" class="opinions">
+    <v-row justify="center" align="center" class="opinions-section">
       <h2 class="opinions-title">Nuestros Clientes</h2>
       <p class="opinions-text">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi autem consectetur delectus dolor eligendi,
@@ -176,7 +176,40 @@ export default {
 
 <style scoped>
 
+.title span {
+  display: inline-block;
+  animation: popIn 1s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.imagen-bienvenida {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
 /* Sección de Bienvenida */
+.title-section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.1s;
+}
+
 .title {
   font-size: 5rem;
   font-weight: 700;
@@ -203,6 +236,13 @@ export default {
 }
 
 /* Sección de Servicios */
+.services-section, .about-us-section, .opinions-section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
 .section-title {
   font-size: 2.5rem;
   margin: 4rem 0 0;
@@ -215,7 +255,6 @@ export default {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   margin: 0.5rem 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
 }
 
@@ -250,13 +289,6 @@ export default {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.service-card, .opinion {
-  opacity: 0;
-  transform: translateY(60px);
-  animation: fadeUp 0.8s ease forwards;
-  animation-delay: 0.2s;
 }
 
 /* Sección Sobre Nosotras */
@@ -303,7 +335,7 @@ export default {
 }
 
 /* Sección Opiniones */
-.opinions {
+.opinions-section {
   margin-top: 140px !important;
   background-color: #ececec;
   border-radius: 35px;
