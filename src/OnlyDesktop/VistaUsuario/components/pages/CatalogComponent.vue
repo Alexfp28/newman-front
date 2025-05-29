@@ -21,7 +21,7 @@ export default {
           id: 1,
           title: 'Producto 1',
           description: 'Descripción del producto 1.',
-          image: 'src/images/newmen.png',
+          image: '/images/newmen.png',
           type: 1,
           price: 19.99
         },
@@ -29,7 +29,7 @@ export default {
           id: 2,
           title: 'Producto 2',
           description: 'Descripción del producto 2.',
-          image: 'src/images/newmen.png',
+          image: '/images/newmen.png',
           type: 2,
           price: 29.99
         },
@@ -37,7 +37,7 @@ export default {
           id: 3,
           title: 'Producto 3',
           description: 'Descripción del producto 3.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 1,
           price: 24.99
         },
@@ -45,7 +45,7 @@ export default {
           id: 4,
           title: 'Producto 4',
           description: 'Descripción del producto 4.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 2,
           price: 34.99
         },
@@ -53,7 +53,7 @@ export default {
           id: 5,
           title: 'Producto 5',
           description: 'Descripción del producto 5.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 1,
           price: 15.99
         },
@@ -61,7 +61,7 @@ export default {
           id: 6,
           title: 'Producto 6',
           description: 'Descripción del producto 6.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 2,
           price: 39.99
         },
@@ -69,7 +69,7 @@ export default {
           id: 7,
           title: 'Producto 7',
           description: 'Descripción del producto 7.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 1,
           price: 22.99
         },
@@ -77,7 +77,7 @@ export default {
           id: 8,
           title: 'Producto 8',
           description: 'Descripción del producto 8.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 2,
           price: 28.99
         },
@@ -85,7 +85,7 @@ export default {
           id: 9,
           title: 'Producto 9',
           description: 'Descripción del producto 9.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 1,
           price: 18.99
         },
@@ -93,7 +93,7 @@ export default {
           id: 10,
           title: 'Producto 10',
           description: 'Descripción del producto 10.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 2,
           price: 33.99
         },
@@ -101,7 +101,7 @@ export default {
           id: 11,
           title: 'Producto 11',
           description: 'Descripción del producto 11.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 1,
           price: 21.99
         },
@@ -109,7 +109,7 @@ export default {
           id: 12,
           title: 'Producto 12',
           description: 'Descripción del producto 12.',
-          image: 'src/images/newmen.png',
+          image: 'images/newmen.png',
           type: 2,
           price: 31.99
         }
