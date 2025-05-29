@@ -10,12 +10,12 @@
 }
 
 .home-container, .contact-container, .appointment-container, .catalog-container, .terms-container , .login-container{
-  padding: 3% 6.5% 4% 6.5% !important;
-  margin-top: 64px;
+  padding: 3% 9% 4% 9% !important;
+  margin-top: 90px;
 }
 
 /* CSS para móviles */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .home-container,
   .contact-container,
   .appointment-container,
@@ -23,10 +23,10 @@
   .terms-container{
 
     .logoH {
-      width: 90px;
+      width: 120px;
     }
 
-    margin-top: 64px;
+    margin-top: 120px;
 
   }
 }
@@ -34,22 +34,3 @@
 a {
   margin: 1px;
 }
-
-/*@media (hover: hover) {*/
-/*  a:hover {*/
-/*    background-color: hsl(190, 39%, 55%);*/
-/*  }*/
-/*}*/
-
-/*@media (min-width: 1024px) {*/
-/*  body {*/
-/*    display: flex;*/
-/*    place-items: center;*/
-/*  }*/
-
-/*  #app {*/
-/*    display: grid;*/
-/*    grid-template-columns: 1fr 1fr;*/
-/*    padding: 0 2rem;*/
-/*  }*/
-/*}*/

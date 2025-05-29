@@ -80,11 +80,10 @@ export default {
     <!-- Banner -->
     <div class="banner">
       <v-img
-          :width="1800"
           :max-height="400"
           cover
           src="src/images/newmen.png"
-          class="image-container"
+          class="image-container mx-auto"
       >
         <div class="banner-content font-weight-bold">
           <h1>Aquí para lo que necesites!</h1>
@@ -174,9 +173,9 @@ export default {
     </v-row>
 
     <!-- Also in -->
-    <v-row justify="center" align="center" class="alsoin">
+    <v-row justify="center" align="center" class="alsoin mx-auto">
       <v-col cols="12" class="text-center">
-        <h2 class="alsoin-title">También nos puedes encontrar en</h2>
+        <h2 class="alsoin-title">También nos puedes encontrar en...</h2>
       </v-col>
 
       <v-row justify="center" spacing="4">
@@ -268,12 +267,8 @@ a {
   font-weight: bold;
 }
 
-.v-text-field, .v-text-area {
-  padding: 3px !important;
-}
-
 /* Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .banner-content h1 {
     font-size: 2.5rem;
   }

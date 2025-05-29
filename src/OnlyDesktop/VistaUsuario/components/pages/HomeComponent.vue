@@ -2,7 +2,7 @@
   <v-container class="home-container" fluid>
 
     <!-- Bienvenida y Carousel -->
-    <v-row justify="space-around">
+    <v-row justify="space-around" style="margin-top: 40px">
 
       <!-- Columna izquierda: Bienvenida y Servicios -->
       <v-col cols="12" md="5">
@@ -46,26 +46,17 @@
         </v-row>
       </v-col>
 
-      <!-- Columna derecha: Carrusel de imágenes -->
-      <v-col cols="12" md="5" class="carousel">
-<!--        <h2 class="text-center carousel-title">-->
-<!--          Nuestros cortes de pelo-->
-<!--          <v-icon>mdi-scissors-cutting</v-icon>-->
-<!--        </h2>-->
-        <v-carousel
-            :show-arrows="false"
-            hide-delimiters
-            height="800"
-            cycle
-        >
-          <v-carousel-item
-              v-for="(image, index) in haircutImages"
-              :key="index"
-              :src="image"
-              cover
-              rounded="xl"
-          ></v-carousel-item>
-        </v-carousel>
+      <!-- Columna derecha: Imagen Tienda -->
+      <v-col cols="12" md="5" style="justify-items: center; padding: 0 !important;">
+        <v-img
+            style="border-radius: 50px;"
+            width="90%"
+            height="100%"
+            aspect-ratio="1/1"
+            cover
+            src="src/images/newmen.png"
+            class="imagen-bienvenida">
+        </v-img>
       </v-col>
 
     </v-row>
@@ -105,7 +96,7 @@
             md="4"
         >
           <v-card
-              class="pa-4 rounded-lg elevation-3"
+              class="pa-4 rounded-lg elevation-3 opinion"
               color="white"
           >
             <v-card-title class="text-h6 font-weight-bold">
@@ -157,11 +148,6 @@ export default {
           title: 'Tratamientos',
           description: 'Cuidado capilar con productos de alta calidad.',
         },
-      ],
-      haircutImages: [
-        'src/images/haircuts/haircut_1.png',
-        'src/images/haircuts/haircut_2.png',
-        'src/images/haircuts/haircut_3.jpg',
       ],
       opinions: [
         {
@@ -230,6 +216,7 @@ export default {
   border-radius: 8px;
   margin: 0.5rem 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
 }
 
 .service-card:hover {
@@ -254,22 +241,27 @@ export default {
   color: #777;
 }
 
-/* Carrusel */
-.carousel, .opinions{
-  background-color: #ececec;
-  padding: 5%;
-  border-radius: 40px;
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.carousel-title {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 1rem;
+.service-card, .opinion {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.2s;
 }
 
 /* Sección Sobre Nosotras */
 .about-us-section {
-  margin-top: 80px !important;
+  margin-top: 140px !important;
 }
 
 .about-title {
@@ -312,7 +304,10 @@ export default {
 
 /* Sección Opiniones */
 .opinions {
-  margin-top: 80px !important;
+  margin-top: 140px !important;
+  background-color: #ececec;
+  border-radius: 35px;
+  padding: 2.5rem;
 }
 
 .opinions-title {
@@ -329,13 +324,17 @@ export default {
 }
 
 /* Versión de móviles */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
 
   .title {
     font-size: 2.5rem;
   }
 
-  .carousel {
+}
+
+@media (max-width: 900px) {
+
+  .imagen-bienvenida {
     display: none;
   }
 

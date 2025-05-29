@@ -145,8 +145,8 @@ export default {
             :loop="true"
             :autoplay="{ delay: 3000, disableOnInteraction: false }"
             :breakpoints="{
-            1024: { slidesPerView: 2 },
-            768: { slidesPerView: 2 }
+            1024: { slidesPerView: 3 },
+            0: { slidesPerView: 2 }
           }"
             style="padding: 20px 0 20px 0"
         >
@@ -177,8 +177,8 @@ export default {
             :loop="true"
             :autoplay="{ delay: 2000, disableOnInteraction: false, reverseDirection: true }"
             :breakpoints="{
-            1024: { slidesPerView: 3 },
-            768: { slidesPerView: 2 }
+            1024: { slidesPerView: 4 },
+            0: { slidesPerView: 3 }
           }"
             style="padding: 20px 0 20px 0"
         >
@@ -210,7 +210,7 @@ export default {
 }
 
 /* Versión de móviles */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .title {
     text-align: center;
     font-size: 5rem;
